@@ -1,0 +1,72 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[francais]{babel}  % paquet de langue français
+\usepackage[latin1]{inputenc}  % encodage des caractères
+\usepackage[T1]{fontenc}  % encodage de la police
+\usepackage[default]{sourcesanspro}  % utilisation de la police 'Source Sans Pro'
+\usepackage[scaled=.8]{DejaVuSansMono}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}  % marges de 2 centimètres chacune
+
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{verbatim}
+\usepackage{upquote}
+
+\usepackage[framemethod=TikZ]{mdframed}
+
+\usepackage{listings}  % package listings
+\usepackage{color}
+
+\usepackage{tcolorbox}
+\usepackage{fancybox}
+
+\usepackage{titlesec}
+        
+\newlength\tindent
+\setlength{\tindent}{\parindent}
+\setlength{\parindent}{0pt}
+\renewcommand{\indent}{\hspace*{2.5em}}
+
+\definecolor{light-gray}{gray}{0.95}
+\definecolor{darkgray}{RGB}{50,50,50}
+\definecolor{white}{RGB}{248,248,248}
+\definecolor{cyan}{RGB}{93,217,239}
+\definecolor{orange}{RGB}{253,151,31}
+\definecolor{rose}{RGB}{249,38,114}
+\definecolor{purple}{RGB}{174,129,255}
+\definecolor{yellow}{RGB}{230,219,116}
+\definecolor{green}{RGB}{82,190,91}
+\definecolor{lime}{RGB}{166,226,46}
+\definecolor{darkorange}{RGB}{233,83,37}
+
+\newcommand{\code}[1]{\fcolorbox{gray}{light-gray}{\texttt{#1}}}  % inline code
+\newtcbox{\term}{on line, fontupper=\ttfamily\color{white}, colback=black, boxrule=0pt, arc=2pt, boxsep=0pt, left=3pt, right=3pt, top=3pt, bottom=3pt} % inline terminal styled code
+
+%\newcommand{\term}[1]{\fcolorbox{white}{black}{\color{white}\texttt{#1}}}  % inline terminal code
+
+\newcommand{\codeblock}[1]{\textcolor{white}{\texttt{#1}}}
+\newcommand{\dec}[1]{\textcolor{cyan}{\texttt{\textsl{#1}}}}
+\newcommand{\func}[1]{\textcolor{lime}{\texttt{#1}}}
+\newcommand{\argm}[1]{\textcolor{orange}{\texttt{\textsl{#1}}}}
+\newcommand{\build}[1]{\textcolor{cyan}{\texttt{#1}}}
+\newcommand{\op}[1]{\textcolor{rose}{\texttt{#1}}}
+\newcommand{\ent}[1]{\textcolor{purple}{\texttt{#1}}}
+\newcommand{\str}[1]{\textcolor{yellow}{\texttt{#1}}}
+\newcommand{\com}[1]{\textcolor{green}{\texttt{\#~#1}}}
+
+\mdfsetup{font=\ttfamily,
+		  fontcolor=white,
+		  backgroundcolor=darkgray,
+		  roundcorner=5pt,
+		  leftmargin=1,
+		  rightmargin=1,
+		  innerleftmargin=10,
+		  innertopmargin=10,
+		  innerbottommargin=10}
+
+\titleformat*{\section}{\Large\color{darkorange}}
+\titleformat*{\subsection}{\large\color{darkorange}}
+\titleformat*{\subsubsection}{\color{darkorange}}
+%\titleformat*{\paragraph}{\large\bfseries}
+%\titleformat*{\subparagraph}{\large\bfseries}
