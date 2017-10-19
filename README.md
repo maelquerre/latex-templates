@@ -12,7 +12,7 @@ Here are my LaTeX design templates to make beautiful reports.
 
 ## Specifications
 
-Each template file contains a set of colours and **commands** to highlight some code in your report. I mostly use Python langage so here are the commands the syntax highlighting:
+Each template file contains a set of colours and **commands** to highlight some code in your report. I mostly use Python langage so here are the commands for the syntax highlighting:
 
 - `\key{}`: keyword
 - `\func{}`: function declaration
