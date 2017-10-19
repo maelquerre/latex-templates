@@ -2,7 +2,7 @@
 
 Here are my LaTeX design templates to make beautiful reports.
 
-## Using the templates files (as I use them)
+## Using the templates files (the way I use them)
 
 1. Put the desired template file 
 
@@ -14,12 +14,12 @@ Here are my LaTeX design templates to make beautiful reports.
 
 Each template file contains a set of colours and **commands** to colour some code in your report. I mostly use Python langage so here are the template for some keywords:
 
-- `\key{def}`: keyword
-- `\func{my_function}`: function declaration
-- `\argm{argument}`: parameter
-- `\build{print}`: built-in function (`print()`or `input()`)
-- `\op`: operator (`+`, `-`, etc.)
-- `\ent`: number
-- `\str`: string
-- `\argm`: keyword argument
-- `\com`: line comment
+- `\key{}`: keyword
+- `\func{}`: function declaration
+- `\param{}`: parameter
+- `\build{}`: built-in function (`print()`or `input()`)
+- `\op{}`: operator (`+`, `-`, etc.)
+- `\ent{}`: number
+- `\str{}`: string
+- `\argm{}`: keyword argument
+- `\com{}`: line comment
