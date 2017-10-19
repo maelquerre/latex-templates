@@ -4,15 +4,15 @@ Here are my LaTeX design templates to make beautiful reports.
 
 ## Using the templates files (the way I use them)
 
-1. Put the desired template file 
+1. Put the desired template file in the same directory as your source file.
 
-2. Just write `\input{template_filename}` instead of the preamble in your original file.
+2. Just write `\input{template_filename}` instead of the preamble in your source file.
 
-3. Use LuaLaTex or **XeLaTex** (faster I guess) to compile your code since I use the *fontspec* package.
+3. Use LuaLaTex or **XeLaTex** (faster I guess) to compile your code since I use the `fontspec` package.
 
 ## Specifications
 
-Each template file contains a set of colours and **commands** to colour some code in your report. I mostly use Python langage so here are the template for some keywords:
+Each template file contains a set of colours and **commands** to highlight some code in your report. I mostly use Python langage so here are the commands the syntax highlighting:
 
 - `\key{}`: keyword
 - `\func{}`: function declaration
