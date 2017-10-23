@@ -17,7 +17,7 @@ Each template file contains a set of colours and **commands** to highlight some 
 - `\key{}`: keyword
 - `\func{}`: function declaration
 - `\param{}`: parameter
-- `\build{}`: built-in function (`print()`or `input()`)
+- `\built{}`: built-in function (`print()`or `input()`)
 - `\op{}`: operator (`+`, `-`, etc.)
 - `\ent{}`: number
 - `\str{}`: string
