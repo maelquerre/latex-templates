@@ -12,7 +12,12 @@ Here are my LaTeX design templates to make beautiful reports.
 
 ## Specifications
 
-Each template file contains a set of colours and **commands** to highlight some code in your report. I mostly use Python langage so here are the commands for the syntax highlighting:
+### Code blocks
+
+You can insert a code block with the `mdframed` environment.
+
+Each template file contains a set of colours and **commands** to highlight some code inside your code block.
+I mostly use Python language so here are the commands for the syntax highlighting in Python (this is quite the same for all other languages, just choose the right highlight command):
 
 - `\key{}`: keyword
 - `\func{}`: function declaration
