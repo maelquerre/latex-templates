@@ -11,8 +11,11 @@
 \usepackage{enumitem}  % bullet lists customisation
 \usepackage{amssymb}  % mathematics symbols
 
+% Packages for tables:
 \usepackage{tabularx}  % adjustable width tables
-\usepackage{diagbox}  % slashboxes for tabulars
+\usepackage{diagbox}  % modern alternative of slashbox 
+\usepackage{slashbox}  % making table heads with diagonal lines
+\usepackage{multirow}
 
 \usepackage[framemethod=TikZ]{mdframed}  % beautiful code blocks
 \usepackage{tcolorbox}
@@ -25,6 +28,8 @@
 \newcommand{\codex}[1]{\colorbox{code-gray}{\texttt{#1}}}  % inline code with sharp corners
 \newcommand\code[2][fill=code-gray]{\tikz[baseline]\node[inner ysep=1pt, inner xsep=2.5pt, anchor=text, rectangle, rounded corners=2pt, #1]{\strut\texttt{#2}};}  % inline code with rounded corners
 \newtcbox{\term}{on line, fontupper=\ttfamily\color{block-gray}, colback=deep-gray, boxrule=0pt, arc=2pt, boxsep=0pt, left=3pt, right=3pt, top=3pt, bottom=2.5pt} % inline terminal styled code
+
+\usepackage{titlesec}  % format titles
 
 \newlength\tindent
 \setlength{\tindent}{\parindent}
@@ -66,3 +71,11 @@
 		  innerrightmargin=30,
 		  innertopmargin=10,
 		  innerbottommargin=10}
+
+%\titleformat{\section}{\LARGE\bfseries}{\thesection}{1em}{}
+%\titleformat{\subsection}{\Large\bfseries}{\thesubsection}{1em}{}
+%\titleformat{\subsubsection}{\large\bfseries}{\thesubsection}{1em}{}
+%\titleformat*{\paragraph}{\large\headingfont}
+
+\titlespacing*{\section}{0pt}{0.5cm}{0.5cm}  % 0.5cm above and below the section
+\titlespacing*{\subsection}{0pt}{0.5cm}{0.5cm}  % 0.5cm above and below the subsection
