@@ -1,0 +1,82 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[a4paper, 11pt]{article}
+
+\usepackage[french]{babel}  % french language package
+\usepackage[utf8]{inputenc}  % characters encoding
+\usepackage[T1]{fontenc}  % font encoding
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}  % 2 centimetres margins
+\usepackage{graphicx}
+\usepackage{url, hyperref}
+\usepackage{verbatim}
+\usepackage{enumitem}  % bullet lists customisation
+\usepackage{amssymb}  % mathematics symbols
+\usepackage[fleqn]{amsmath}  % mathematics symbols
+
+\usepackage{titlesec}  % titles customisation features
+
+\usepackage{tabularx}  % adjustable width tables
+\usepackage{diagbox}  % slashboxes for tabulars
+\usepackage{array}  % better tables
+\usepackage{multirow}  % multiple rows merges
+
+\usepackage[framemethod=TikZ]{mdframed}  % beautiful code blocks
+\usepackage{tcolorbox}
+
+\usepackage[nocenter]{qtree}  % trees
+
+\definecolor{block-gray}{RGB}{246,248,250}
+\definecolor{code-gray}{RGB}{244,244,245}
+\definecolor{deep-gray}{RGB}{36,41,46}
+
+% Inline code frames:
+\newcommand{\codex}[1]{\colorbox{code-gray}{\texttt{#1}}}  % inline code with sharp corners
+
+\newcommand\code[2][fill=code-gray]{\tikz[baseline]\node[inner ysep=1pt, inner xsep=2.5pt, anchor=text, rectangle, rounded corners=2pt, #1]{\strut\texttt{#2}};}  % inline code with rounded corners
+
+\newcommand\term[2][fill=deep-gray]{\tikz[baseline]\node[inner ysep=1pt, inner xsep=2.5pt, anchor=text, rectangle, rounded corners=2pt, #1]{\strut\color{whitegray}\texttt{#2}};}  % inline terminal styled code with rounded corners
+
+\newlength\tindent
+\setlength{\tindent}{\parindent}
+\setlength{\parindent}{0pt}
+\renewcommand{\indent}{\hspace*{2.5em}}
+
+\definecolor{deep-gray}{RGB}{36,41,46}
+\definecolor{darkgray}{RGB}{50,50,50}
+\definecolor{gray}{RGB}{106,115,125}
+\definecolor{table-gray}{RGB}{223,226,229}
+\definecolor{light-gray}{RGB}{234,236,239}
+\definecolor{code-gray}{RGB}{244,244,245}
+\definecolor{block-gray}{RGB}{246,248,250}
+\definecolor{red}{RGB}{215,58,73}
+\definecolor{blue}{RGB}{0,92,197}
+\definecolor{dark-blue}{RGB}{3,47,98}
+\definecolor{purple}{RGB}{111,66,193}
+\definecolor{orange}{RGB}{227,98,9}
+
+% Commands for syntax highlighting:
+\newcommand{\key}[1]{\textbf{\texttt{#1}}}  % keyword
+\newcommand{\func}[1]{\texttt{#1}}  % function declaration
+\newcommand{\param}[1]{\texttt{\textsl{#1}}}  % parameter
+\newcommand{\built}[1]{\texttt{#1}}  % built-in function
+\newcommand{\op}[1]{\texttt{#1}}  % operator
+\newcommand{\ent}[1]{\texttt{#1}}  % number
+\newcommand{\str}[1]{\texttt{#1}}  % string
+\newcommand{\argm}[1]{\texttt{#1}}  % keyword argument
+\newcommand{\com}[1]{\textcolor{gray}{\texttt{#1}}}  % line comment
+
+\mdfsetup{font=\ttfamily,
+		  fontcolor=deep-gray,
+		  linecolor=black,
+		  linewidth=.5pt,
+		  roundcorner=2pt,
+		  %leftline=false,
+		  %rightline=false,
+		  leftmargin=0,
+		  rightmargin=0,
+		  innerleftmargin=10,
+		  innerrightmargin=30,
+		  innertopmargin=9,
+		  innerbottommargin=9}
+
+%\titlespacing*{\section}{0pt}{0.5cm}{0.5cm}  % 0.5cm above and below the section
+%\titlespacing*{\subsection}{0pt}{0.5cm}{0.5cm}  % 0.5cm above and below the subsection
