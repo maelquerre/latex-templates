@@ -1,0 +1,111 @@
+\input{../preambles/classic_coloured}
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\begin{document}
+
+\noindent
+Université \hfill Cursus, 2017-2018 \\
+Département
+
+\begin{center}
+	\Large{Programmation}\\
+	\vspace{1em}
+	\huge\textbf{Devoir 1}
+\end{center}
+
+\vspace{1em}
+
+\section*{Problem 1}
+
+Le Listing \ref{lstpython} montre un script Python.
+
+\begin{lstlisting}[language=Python, caption=Échantillon de script Python avec coloration, label=lstpython]
+def f(x):
+	s = ("Test", 2 + 3, {'a': 'b'}, x)  # Comment
+	if s:
+		print(s[0].lower())
+
+class Foo:
+	def __init__(self):
+		byte_string = 'newline:\n also newline:\x0a'
+		text_string = "Cyrillic Я is \u042f."
+		self.makeSense(whatever=1)
+	
+	def make_sense(self, whatever):
+		self.sense = whatever
+
+x = len('abc')
+print(f.__doc__)
+\end{lstlisting}
+
+\lipsum[1]
+
+\vspace{1em}
+
+\lipsum[7]
+
+\section*{Problem 2}
+
+\lipsum[2]
+\vspace{1em}
+
+\begin{lstlisting}[language=Pseudo-code, caption=Calcul de puissance d'un nombre réel]
+procedure puissance(a: entier, n: entier)
+	x: entier ; x = 1
+	tant que n <> 0 faire:
+		x = x * a
+		n = n - 1
+	retourner x
+\end{lstlisting}
+
+
+\begin{lstlisting}[language=Pseudo-code, caption=Recherche du minimum dans une liste]
+procedure minimum(L: liste)
+	mini: entier
+	n: entier ; n = longueur(L)
+	i: entier
+	si n = 0 alors:
+		return 0
+	mini = L[1]
+	pour i allant de 2 à n faire:
+		si L[i] < mini alors:
+			mini = L[i]
+	retourner mini
+\end{lstlisting}
+
+\begin{lstlisting}[language=Pseudo-code]
+procedure minimum(L: liste)
+	mini: entier
+	n: entier ; n = longueur(L)
+	i: entier
+	si n = 0 alors:
+		return 0
+	mini = L[1]
+	pour i allant de 2 à n faire:
+		si L[i] < mini alors:
+			mini = L[i]
+	retourner mini
+\end{lstlisting}
+
+\lipsum[3]
+
+\vspace{1em}
+
+La Figure \ref{exemple} montre un exemple.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{images/figure_dexemple.png}
+\caption{Une figure d'exemple}
+\label{exemple}
+\end{figure}
+
+\lipsum[4]
+\lipsum[5]
+
+\vspace{1em}
+
+\lipsum[6]
+
+\end{document}

@@ -1,0 +1,203 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[a4paper, 11pt]{article}
+
+\usepackage[utf8]{inputenc}  % Characters encoding
+\usepackage[T1]{fontenc}  % Font encoding
+\usepackage[margin=2.5cm]{geometry}  % Margins
+
+\usepackage{graphicx}
+\usepackage{url, hyperref}
+\usepackage{verbatim}
+
+\usepackage{enumitem}  % Bullet lists customisation
+\usepackage{amssymb}  % Mathematics symbols
+\usepackage{amsmath}  % Mathematics equations
+
+\usepackage{listings}  % Required for insertion of code
+\usepackage{textcomp}  % Text Com­pan­ion fonts, which pro­vide many text sym­bols
+
+% Packages for tables:
+\usepackage{tabularx}  % Adjustable width tables
+\usepackage{diagbox}  % Modern alternative of slashbox 
+\usepackage{slashbox}  % Making table heads with diagonal lines
+\usepackage{multirow}  % Multi-rows in tables
+
+\usepackage{tikz}  % beautiful code blocks
+\usepackage{tcolorbox}
+
+\usepackage{float}  % put figures where you actually want
+\usepackage[percent]{overpic}  % write text on figures
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}  % neat hrules
+
+\usepackage{titlesec}  % titles customisation features
+
+% Indentation:
+\newlength\tindent
+\setlength{\tindent}{\parindent}
+\setlength{\parindent}{0pt}
+\renewcommand{\indent}{\hspace*{2em}}
+
+\definecolor{block-gray}{RGB}{246,248,250}
+
+\definecolor{deep-gray}{RGB}{36,41,46}
+\definecolor{darkgray}{RGB}{50,50,50}
+\definecolor{gray}{RGB}{106,115,125}  % line comments colour
+\definecolor{code-gray}{RGB}{244,244,245}  % inline code frame colour
+\definecolor{light-gray}{RGB}{234,236,239}
+\definecolor{code-gray}{RGB}{244,244,245}
+\definecolor{whitegray}{RGB}{246,248,250}  % bright foreground colour
+\definecolor{red}{RGB}{215,58,73}  % keywords and operators colour
+\definecolor{blue}{RGB}{0,92,197}  % numbers and built-in functions colour
+\definecolor{dark-blue}{RGB}{3,47,98}  % strings colour
+\definecolor{purple}{RGB}{111,66,193}  % function declarations colour
+\definecolor{orange}{RGB}{227,98,9}  % keyword arguments colour
+
+% Inline code frames:
+\newcommand{\codex}[1]{\colorbox{code-gray}{\texttt{#1}}}  % inline code with sharp corners
+
+\newcommand\code[2][fill=code-gray]{\tikz[baseline]\node[inner ysep=1pt, inner xsep=2.5pt, anchor=text, rectangle, rounded corners=2pt, #1]{\strut\texttt{#2}};}  % inline code with rounded corners
+
+\newcommand\term[2][fill=deep-gray]{\tikz[baseline]\node[inner ysep=1pt, inner xsep=2.5pt, anchor=text, rectangle, rounded corners=2pt, #1]{\strut\color{whitegray}\texttt{#2}};}  % inline terminal styled code with rounded corners
+
+%\newtcbox{\term}{on line, fontupper=\ttfamily\color{term-gray}, colback=deep-gray, boxrule=0pt, arc=2pt, boxsep=0pt, left=3pt, right=3pt, top=3pt, bottom=2.5pt} % inline terminal styled code
+		  
+
+%----------------------------------------------------------------------------------------
+%	CODE INCLUSION CONFIGURATION
+%----------------------------------------------------------------------------------------
+
+% -- Python configuration --
+% Set the delimiter for classes declarations
+\newcommand{\classClassHighlight}[1]{\textcolor{red}{class} \textcolor{purple}{#1}:}
+% Set the delimiter for functions declarations
+\newcommand{\functionDefHighlight}[1]{\textcolor{red}{def} \textcolor{purple}{#1}(}
+% Set the delimiter for special methods declarations
+\newcommand{\specialMethodHighlight}[1]{\textcolor{red}{def} \textcolor{blue}{\_\_#1\_\_}}
+
+\lstdefinelanguage{Python} {
+	% Standard keywords:
+    morekeywords=[1]{and, as, assert, break, class, continue, def, del, elif, else, except,
+    				 finally, for, from, global, if, import, in, is, lambda, nonlocal, not,
+				 	 or, pass, raise, return, try, while, with, yield},
+    %
+    % Built-in functions:
+    morekeywords=[2]{abs, all, any, ascii, bin, bool, bytearray, bytes, callable, chr,
+    				 classmethod, compile, complex, delattr, dict, dir, divmod, enumerate,
+				 	 eval, exec, False, filter, float, format, frozenset, getattr, globals,
+					 hasattr, hash, help, hex, id, input, int, isinstance, issubclass,
+					 iter, len, list, locals, map, max, memoryview, min, next, None,
+					 object, oct, open, ord, pow, print, property, range, repr, reversed,
+					 round, self, set, setattr, slice, sorted, staticmethod, str, sum,
+					 super, True, tuple, type, vars, zip},
+    %
+    % Operators:
+    % (The colour of otherkeywords is the same colour as keywordstyle[1])
+    otherkeywords={+, -, *, /, =, <, >, \%, +=, -=, *=},
+    %
+    morecomment=[l][\color{gray}]{\#}, % Python comments (#)
+    %
+    morestring=[b]", % Strings defined with "
+    morestring=[b]', % Strings defined with '
+    %
+    moredelim=[is][\classClassHighlight]{class\ }{:}, % Delimiter for classes declarations
+	moredelim=[is][\functionDefHighlight]{def\ }{(}, % Delimiter for functions declarations
+	moredelim=[is][\specialMethodHighlight]{def\ __}{__}, % Delimiter for special methods declarations
+	moredelim=[s][\color{blue}]{__}{__}, % Delimiter for special methods
+}
+
+
+% -- Pseudo-code configuration --
+% Set the delimiter for structure declarations
+\newcommand{\structureHighlight}[1]{\textcolor{red}{structure} \textcolor{purple}{#1} \{}
+% Set the delimiter for procedure (with arguments) declarations
+\newcommand{\procedureHighlight}[1]{\textcolor{purple}{#1}(}
+% Set the delimiter for functions declarations
+\newcommand{\procedureWithoutArgumentsHighlight}[1]{\textcolor{red}{procédure} \textcolor{purple}{#1} \{}
+
+\lstdefinelanguage{Pseudo-code} {
+	% Mots-clés standards :
+    morekeywords=[1]{allant, alors, à, de, et, faire, non, ou, pour, procédure, que,
+    				 retourner, si, sinon, structure, tant},
+    %
+    % Fonctions intégrées :
+    morekeywords=[2]{afficher, Faux, longueur, max, min, None, Vrai},
+    %
+    % Operators:
+    % (The colour of otherkeywords is the same colour as keywordstyle[1])
+    otherkeywords={+, -, *, /, =, <, >, \%, +=, -=, *=},
+    %
+	morecomment=[l][\color{gray}]{//}, % Commentaires en ligne (//)
+    morecomment=[l][\color{gray}]{\#}, % Commentaires python (#)
+    %
+    morestring=[b]", % Chaînes de caractères définies avec : "
+    morestring=[b]', % Chaînes de caractères définies avec : '
+    %
+    moredelim=[is][\structureHighlight]{structure\ }{\ \{}, % Délimiteur pour les déclarations de structure
+	moredelim=[is][\procedureHighlight]{procedure\ }{(}, % Délimiteur pour les déclarations de procédure
+	moredelim=[is][\procedureWithoutArgumentsHighlight]{procédure\ }{\ \{}, % Délimiteur pour les déclarations de procédure sans arguments
+}
+                                          
+% -- General configuration --
+\lstset {
+	frame=leftline, % Left line frame around code
+	framexleftmargin=5pt,  % Margin between the code and the frameline
+	xleftmargin=25pt, % Margin between the left border of the page and the listing
+	belowskip=1.5em, % Space below the listing
+	backgroundcolor=\color{white}, % Background colour
+	basicstyle=\linespread{1.1}\ttfamily, % Line spread is for spacing between lines
+	upquote=true, % Straight single quotes
+	columns=flexible, % Flexible column alignment
+	keepspaces=true, % Not drop spaces to fix column alignment and always convert tabulators to spaces
+	breaklines=true, % Break when the line is too long
+	commentstyle=\color{gray}, % Comments are gray
+	stringstyle=\color{dark-blue}, % Strings are dark-blue
+	showstringspaces=false, % Don't put marks in string spaces
+	tabsize=4, % 4 spaces per tab
+	%
+	keywordstyle=[1]\color{red}, % Keywords style
+	keywordstyle=[2]\color{blue}, % Built-in functions style
+	%
+	% Colours for numbers:
+	% (The star indicates that literate replacements should not be made in strings, comments, and other delimited text)
+	literate=*{0}{{{\color{blue}0}}}{1}
+			  {1}{{{\color{blue}1}}}{1}
+			  {2}{{{\color{blue}2}}}{1}
+			  {3}{{{\color{blue}3}}}{1}
+			  {4}{{{\color{blue}4}}}{1}
+			  {5}{{{\color{blue}5}}}{1}
+			  {6}{{{\color{blue}6}}}{1}
+			  {7}{{{\color{blue}7}}}{1}
+			  {8}{{{\color{blue}8}}}{1}
+			  {9}{{{\color{blue}9}}}{1},
+	%
+	numbers=left, % Line numbers on left
+	firstnumber=1, % Line numbers start with line 1
+	numberstyle=\tt\scriptsize\color{gray}, % Line numbers are blue and small
+	numbersep=15pt, % Distance between the numbers and the listing
+	%stepnumber=5, % Line numbers go in steps of 5
+}
+  
+% Creates a new command to include a python script:
+% The first parameter is the filename of the script (without .py) and the second parameter is the caption
+\newcommand{\pythonscript}[2]{
+\begin{itemize}
+\item[]\lstinputlisting[caption=#2, label=#1]{#1.py}
+\end{itemize}
+}
+
+\newcommand{\sqlscript}[2][]{
+\begin{itemize}
+\item[]\lstinputlisting[language=SQL, #1]{#2.sql}
+\end{itemize}
+}
+
+
+%\titleformat{\section}{\LARGE\bfseries}{\thesection}{1em}{}
+%\titleformat{\subsection}{\Large\bfseries}{\thesubsection}{1em}{}
+%\titleformat{\subsubsection}{\large\bfseries}{\thesubsection}{1em}{}
+%\titleformat*{\paragraph}{\large\headingfont}
+
+\titlespacing*{\section}{0pt}{0.7cm}{0.5cm}  % 0.5cm above and below the section
+\titlespacing*{\subsection}{0pt}{0.7cm}{0.5cm}  % 0.5cm above and below the subsection
+
+\usepackage[french]{babel}  % french language package
