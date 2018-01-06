@@ -11,4 +11,3 @@ The preambles files are named according to the highlighting colours of the code 
 2. Just write `\input{preamble_filename}` instead of the preamble in your source file (before `\begin{document}`).
 
 3. Use LuaLaTex or **XeLaTex** to compile your document since the `fontspec` package is used.
-@
