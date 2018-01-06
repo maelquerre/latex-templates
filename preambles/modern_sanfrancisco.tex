@@ -5,11 +5,29 @@
 \usepackage[french]{babel}  % french language package
 \frenchbsetup{StandardLists=true}  % english bullet lists
 \usepackage{fontspec}
-\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}  % 2 centimetres margin
+\usepackage[margin=2cm]{geometry}  % 2 centimetres margin
 
-\setmainfont{SF Pro Text}[Color=24292E]  % main font of the document
-\setmonofont{SF Mono}[Scale=0.9]  % mono font of the document
-\newfontfamily\headingfont[Color=24292E]{SF Pro Display Semibold}  % setting heading font for sections and subsections
+% Main font of the document:
+\setmainfont{SF-Pro-Text}[Path = fonts/,
+    					  UprightFont = *-Regular,
+    					  BoldFont = *-Semibold,
+					  	  ItalicFont = *-RegularItalic,
+						  BoldItalicFont = *-SemiboldItalic]
+
+% Mono font of the document:
+\setmonofont{SFMono}[Path = fonts/,
+					 UprightFont = *-Regular,
+					 BoldFont = *-Bold,
+					 ItalicFont = *-RegularItalic,
+					 BoldItalicFont = *-BoldItalic,
+					 Scale=0.9]
+
+% Setting heading font for sections and subsections:
+\newfontfamily\headingfont{SF-Pro-Display}[Path = fonts/,
+										   UprightFont = *-Regular,
+										   BoldFont = *-Semibold,
+										   ItalicFont = *-RegularItalic,
+										   BoldItalicFont = *-SemiboldItalic]
 
 %% In case fontspec doesn't work with accents:
 %\usepackage{polyglossia}
@@ -222,10 +240,10 @@
 \end{itemize}
 }
 
-\titleformat{\section}{\huge\headingfont}{\thesection}{1em}{}[{\color{light-gray}\titlerule[0.5pt]}]  % horizontal rule under sections
-\titleformat{\subsection}{\LARGE\headingfont}{\thesubsection}{1em}{}[{\color{light-gray}\titlerule[0.5pt]}]  % horizontal rule under subsections
-\titleformat{\subsubsection}{\Large\headingfont}{\thesubsection}{1em}{}[{\color{light-gray}}]
-\titleformat*{\paragraph}{\large\headingfont}
+\titleformat{\section}{\huge\bfseries\headingfont}{\thesection}{1em}{}[{\color{light-gray}\titlerule[0.5pt]}]  % horizontal rule under sections
+\titleformat{\subsection}{\LARGE\bfseries\headingfont}{\thesubsection}{1em}{}[{\color{light-gray}\titlerule[0.5pt]}]  % horizontal rule under subsections
+\titleformat{\subsubsection}{\Large\bfseries\headingfont}{\thesubsection}{1em}{}[{\color{light-gray}}]
+\titleformat*{\paragraph}{\large\bfseries\headingfont}
 %\titleformat*{\subparagraph}{\large\bfseries}
 
 \titlespacing*{\section}{0pt}{0.5cm}{0.5cm}  % 0.5cm above and below the section
