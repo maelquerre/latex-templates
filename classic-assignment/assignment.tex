@@ -1,26 +1,72 @@
 \input{../preambles/classic_coloured}
 
-\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{lipsum} % Insert dummy text into the template
+
+
+%%%%%%%%%% Fancyhdr (headers and footers) %%%%%%%%%%
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\cfoot{\thepage~/ \pageref{LastPage}} % style de numéro de page
+\fancypagestyle{plain}{%
+\fancyhf{} % vide l’en-tête et le pied~de~page.
+\fancyfoot[C]{\thepage~on \pageref{LastPage}} % style de numéro de page
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}}
+
+
+% New commands for title
+\makeatletter
+\def\@university{}
+\newcommand{\university}[1]{\def\@university{#1}}
+%
+\def\@department{}
+\newcommand{\department}[1]{\def\@department{#1}}
+%
+\def\@subject{}
+\newcommand{\subject}[1]{\def\@subject{#1}}
+\makeatother
+
+% Redefine the \maketitle command in order to put better information
+\makeatletter
+\def\maketitle{%
+  \null
+  \let \footnote \thanks
+  	\noindent
+    \@university\hfill\@date\\%
+    \begin{tabular}{@{}l}
+        \@department
+      \end{tabular}\hfill
+      \begin{tabular}{r@{}}
+        \@author
+      \end{tabular}\par%
+    \vskip 1em%
+    \begin{center}%
+      {\Large{\@subject}\par}%
+      \vskip 1em%
+      {\huge\textbf{\@title}\par}%
+    \end{center}%
+  \par
+  \vskip 1.5em}
+\makeatother
+
+\university{University}
+\date{\today}
+\author{John Smith}
+\title{Assignment 1}
+\department{Computer Science}
+\subject{Programming}
 
 \begin{document}
+\thispagestyle{plain}
 
-\noindent
-Université \hfill Cursus, 2017-2018 \\
-Département
+\maketitle
 
-\begin{center}
-	\Large{Programmation}\\
-	\vspace{1em}
-	\huge\textbf{Devoir 1}
-\end{center}
+\section{Problem 1}
 
-\vspace{1em}
+The Listing \ref{lstpython} shows a Python script.
 
-\section*{Problem 1}
-
-Le Listing \ref{lstpython} montre un script Python.
-
-\begin{lstlisting}[language=Python, caption=Échantillon de script Python avec coloration, label=lstpython]
+\begin{lstlisting}[language=Python, caption=Sample Python script with highlighting, label=lstpython]
 def f(x):
 	s = ("Test", 2 + 3, {'a': 'b'}, x)  # Comment
 	if s:
@@ -41,11 +87,11 @@ print(f.__doc__)
 
 \lipsum[1]
 
-\vspace{1em}
+\vskip 1em
 
 \lipsum[7]
 
-\section*{Problem 2}
+\section{Problem 2}
 
 \lipsum[2]
 \vspace{1em}
@@ -78,12 +124,12 @@ procedure minimum(L: liste)
 
 \vspace{1em}
 
-La Figure \ref{exemple} montre un exemple.
+The Figure \ref{exemple} shows an example.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\textwidth]{images/figure_dexemple.png}
-\caption{Une figure d'exemple}
+\includegraphics[width=0.7\textwidth]{images/example_figure.png}
+\caption{A sample figure}
 \label{exemple}
 \end{figure}
 

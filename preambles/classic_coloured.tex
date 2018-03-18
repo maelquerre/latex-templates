@@ -16,50 +16,33 @@
 \usepackage{listings}  % Required for insertion of code
 \usepackage{textcomp}  % Text Com­pan­ion fonts, which pro­vide many text sym­bols
 
-% Packages for tables:
-\usepackage{tabularx}  % Adjustable width tables
-\usepackage{diagbox}  % Modern alternative of slashbox 
-\usepackage{slashbox}  % Making table heads with diagonal lines
-\usepackage{multirow}  % Multi-rows in tables
-
-\usepackage{tikz}  % beautiful code blocks
+\usepackage{tikz}
 \usepackage{tcolorbox}
 
-\usepackage{float}  % put figures where you actually want
-\usepackage[percent]{overpic}  % write text on figures
+\usepackage{float} % put figures where you actually want
+\usepackage[percent]{overpic} % write text on figures
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}  % neat hrules
 
-\usepackage{titlesec}  % titles customisation features
+\usepackage{titlesec} % titles customisation features
 
-% Indentation:
-\newlength\tindent
-\setlength{\tindent}{\parindent}
-\setlength{\parindent}{0pt}
-\renewcommand{\indent}{\hspace*{2em}}
-
-\definecolor{block-gray}{RGB}{246,248,250}
-
-\definecolor{deep-gray}{RGB}{36,41,46}
-\definecolor{darkgray}{RGB}{50,50,50}
-\definecolor{gray}{RGB}{106,115,125}  % line comments colour
-\definecolor{code-gray}{RGB}{244,244,245}  % inline code frame colour
-\definecolor{light-gray}{RGB}{234,236,239}
-\definecolor{code-gray}{RGB}{244,244,245}
-\definecolor{whitegray}{RGB}{246,248,250}  % bright foreground colour
-\definecolor{red}{RGB}{215,58,73}  % keywords and operators colour
-\definecolor{blue}{RGB}{0,92,197}  % numbers and built-in functions colour
-\definecolor{dark-blue}{RGB}{3,47,98}  % strings colour
-\definecolor{purple}{RGB}{111,66,193}  % function declarations colour
-\definecolor{orange}{RGB}{227,98,9}  % keyword arguments colour
+\definecolor{darkgray}{RGB}{36,41,46} % terminal colour style
+\definecolor{gray}{RGB}{106,115,125} % line comments colour
+\definecolor{lightgray}{RGB}{244,244,245} % inline code frame colour
+\definecolor{whitegray}{RGB}{246,248,250} % bright foreground colour
+\definecolor{red}{RGB}{215,58,73} % keywords and operators colour
+\definecolor{blue}{RGB}{0,92,197} % numbers and built-in functions colour
+\definecolor{darkblue}{RGB}{3,47,98} % strings colour
+\definecolor{purple}{RGB}{111,66,193} % function declarations colour
+\definecolor{orange}{RGB}{227,98,9} % keyword arguments colour
 
 % Inline code frames:
-\newcommand{\codex}[1]{\colorbox{code-gray}{\texttt{#1}}}  % inline code with sharp corners
+\newcommand{\codex}[1]{\colorbox{lightgray}{\texttt{#1}}}  % inline code with sharp corners
 
-\newcommand\code[2][fill=code-gray]{\tikz[baseline]\node[inner ysep=1pt, inner xsep=2.5pt, anchor=text, rectangle, rounded corners=2pt, #1]{\strut\texttt{#2}};}  % inline code with rounded corners
+\newcommand\code[2][fill=lightgray]{\tikz[baseline]\node[inner ysep=1pt, inner xsep=2.5pt, anchor=text, rectangle, rounded corners=2pt, #1]{\strut\texttt{#2}};}  % inline code with rounded corners
 
-\newcommand\term[2][fill=deep-gray]{\tikz[baseline]\node[inner ysep=1pt, inner xsep=2.5pt, anchor=text, rectangle, rounded corners=2pt, #1]{\strut\color{whitegray}\texttt{#2}};}  % inline terminal styled code with rounded corners
+\newcommand\term[2][fill=darkgray]{\tikz[baseline]\node[inner ysep=1pt, inner xsep=2.5pt, anchor=text, rectangle, rounded corners=2pt, #1]{\strut\color{whitegray}\texttt{#2}};}  % inline terminal styled code with rounded corners
 
-%\newtcbox{\term}{on line, fontupper=\ttfamily\color{term-gray}, colback=deep-gray, boxrule=0pt, arc=2pt, boxsep=0pt, left=3pt, right=3pt, top=3pt, bottom=2.5pt} % inline terminal styled code
+%\newtcbox{\term}{on line, fontupper=\ttfamily\color{term-gray}, colback=darkgray, boxrule=0pt, arc=2pt, boxsep=0pt, left=3pt, right=3pt, top=3pt, bottom=2.5pt} % inline terminal styled code
 		  
 
 %----------------------------------------------------------------------------------------
@@ -68,7 +51,7 @@
 
 % -- Python configuration --
 % Set the delimiter for classes declarations
-\newcommand{\classClassHighlight}[1]{\textcolor{red}{class} \textcolor{purple}{#1}:}
+\newcommand{\pythonClassHighlight}[1]{\textcolor{red}{class} \textcolor{purple}{#1}:}
 % Set the delimiter for functions declarations
 \newcommand{\functionDefHighlight}[1]{\textcolor{red}{def} \textcolor{purple}{#1}(}
 % Set the delimiter for special methods declarations
@@ -76,12 +59,12 @@
 
 \lstdefinelanguage{Python} {
 	% Standard keywords:
-    morekeywords=[1]{and, as, assert, break, class, continue, def, del, elif, else, except,
+	morekeywords=[1]{and, as, assert, break, class, continue, def, del, elif, else, except,
     				 finally, for, from, global, if, import, in, is, lambda, nonlocal, not,
 				 	 or, pass, raise, return, try, while, with, yield},
-    %
-    % Built-in functions:
-    morekeywords=[2]{abs, all, any, ascii, bin, bool, bytearray, bytes, callable, chr,
+	%
+	% Built-in functions:
+	morekeywords=[2]{abs, all, any, ascii, bin, bool, bytearray, bytes, callable, chr,
     				 classmethod, compile, complex, delattr, dict, dir, divmod, enumerate,
 				 	 eval, exec, False, filter, float, format, frozenset, getattr, globals,
 					 hasattr, hash, help, hex, id, input, int, isinstance, issubclass,
@@ -89,20 +72,51 @@
 					 object, oct, open, ord, pow, print, property, range, repr, reversed,
 					 round, self, set, setattr, slice, sorted, staticmethod, str, sum,
 					 super, True, tuple, type, vars, zip},
-    %
-    % Operators:
-    % (The colour of otherkeywords is the same colour as keywordstyle[1])
-    otherkeywords={+, -, *, /, =, <, >, \%, +=, -=, *=},
-    %
-    morecomment=[l][\color{gray}]{\#}, % Python comments (#)
-    %
-    morestring=[b]", % Strings defined with "
-    morestring=[b]', % Strings defined with '
-    %
-    moredelim=[is][\classClassHighlight]{class\ }{:}, % Delimiter for classes declarations
+	%
+	% Operators:
+	% (The colour of otherkeywords is the same colour as keywordstyle[1])
+	otherkeywords={+, -, *, /, =, <, >, \%, +=, -=, *=},
+	%
+	morecomment=[l][\color{gray}]{\#}, % Python comments (#)
+	%
+	morestring=[b]", % Strings defined with "
+	morestring=[b]', % Strings defined with '
+	%
+	moredelim=[is][\pythonClassHighlight]{class\ }{:}, % Delimiter for classes declarations
 	moredelim=[is][\functionDefHighlight]{def\ }{(}, % Delimiter for functions declarations
 	moredelim=[is][\specialMethodHighlight]{def\ __}{__}, % Delimiter for special methods declarations
 	moredelim=[s][\color{blue}]{__}{__}, % Delimiter for special methods
+}
+
+
+% -- Java configuration --
+% Set the delimiter for Java classes declarations
+\newcommand{\javaClassHighlight}[1]{\textcolor{red}{class} \textcolor{purple}{#1} \{}
+% Set the delimiter for public methods declarations
+\newcommand{\publicMethodHighlighting}[1]{\textcolor{red}{public} \textcolor{purple}{#1}(}
+
+\lstdefinelanguage{Java} {
+	moredelim=[is][\javaClassHighlight]{class\ }{\ \{}, % Delimiter for classes declarations
+	moredelim=[is][\publicMethodHighlighting]{public\ }{(}, % Delimiter for public methods declarations
+}
+
+\lstdefinelanguage{Java} {
+	% Mots-clés standards:
+	keywords={abstract, assert, boolean, break, byte, case, catch, char, class, const,
+			  continue, default, do, double, else, enum, extends, final, finally, float,
+			  for, goto, if, implements, import, instanceof, int, interface, long, native,
+			  new, package, private, protected, public, return, short, static, strictfp,
+			  super, switch, synchronized, throw, throws, transient, try, void,
+			  volatile, while},
+	morekeywords=[2]{this, true, null, false},
+	moredelim=[is][\javaClassHighlight]{class\ }{\ \{}, % Délimiteur pour les classes
+	morecomment=[s]{/*}{*/},
+	morecomment=[l]{//},
+	morestring=[b]',
+	morestring=[b]",
+	% Operators:
+    % (The colour of otherkeywords is the same colour as keywordstyle[1])
+    otherkeywords={+, -, =, <, >, \%, +=, -=, *=, .}, % unable to set * and / as operators with comments (// and /**/)
 }
 
 
@@ -136,7 +150,21 @@
 	moredelim=[is][\procedureHighlight]{procedure\ }{(}, % Délimiteur pour les déclarations de procédure
 	moredelim=[is][\procedureWithoutArgumentsHighlight]{procédure\ }{\ \{}, % Délimiteur pour les déclarations de procédure sans arguments
 }
-                                          
+
+
+% -- JavaScript configuration --
+\lstdefinelanguage{JavaScript}{
+	keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var,
+  			  if, in, while, do, else, case, break},
+	morekeywords=[2]{class, export, boolean, throw, implements, import, this},
+	sensitive=false,
+	comment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	morestring=[b]',
+	morestring=[b]"
+}
+
+                                    
 % -- General configuration --
 \lstset {
 	frame=leftline, % Left line frame around code
@@ -150,7 +178,7 @@
 	keepspaces=true, % Not drop spaces to fix column alignment and always convert tabulators to spaces
 	breaklines=true, % Break when the line is too long
 	commentstyle=\color{gray}, % Comments are gray
-	stringstyle=\color{dark-blue}, % Strings are dark-blue
+	stringstyle=\color{darkblue}, % Strings are darkblue
 	showstringspaces=false, % Don't put marks in string spaces
 	tabsize=4, % 4 spaces per tab
 	%
@@ -172,7 +200,7 @@
 	%
 	numbers=left, % Line numbers on left
 	firstnumber=1, % Line numbers start with line 1
-	numberstyle=\tt\scriptsize\color{gray}, % Line numbers are blue and small
+	numberstyle=\tt\scriptsize\color{gray}, % Line numbers are gray and small
 	numbersep=15pt, % Distance between the numbers and the listing
 	%stepnumber=5, % Line numbers go in steps of 5
 }
@@ -200,4 +228,4 @@
 \titlespacing*{\section}{0pt}{0.7cm}{0.5cm}  % 0.5cm above and below the section
 \titlespacing*{\subsection}{0pt}{0.7cm}{0.5cm}  % 0.5cm above and below the subsection
 
-\usepackage[french]{babel}  % french language package
+\usepackage[english]{babel}  % language package
