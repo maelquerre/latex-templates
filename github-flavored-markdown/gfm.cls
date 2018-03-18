@@ -11,7 +11,7 @@
 % --------------
 % Other packages
 % --------------
-\RequirePackage{fontspec} % Needed for XeLaTeX fonts selection
+\RequirePackage[quiet]{fontspec} % Needed for XeLaTeX fonts usage
 \RequirePackage[margin=2cm]{geometry}  % Margin definition
 \RequirePackage[normalem]{ulem}  % Needed for scratched text
 \RequirePackage{titlesec} % Needed for sections customisation
@@ -95,8 +95,8 @@
 %	CODE INCLUSION CONFIGURATION
 %----------------------------------------------------------------------------------------
 % -- Java configuration --
-% Set the delimiter for Java classes declarations
-\newcommand{\javaClassHighlight}[1]{\textcolor{red}{class} \textcolor{purple}{#1} \{}
+% Set the delimiter for Java classes declarations (commented because not working)
+%\newcommand{\javaClassHighlight}[1]{\textcolor{red}{class} \textcolor{purple}{#1} \{}
 
 \lstdefinelanguage{Java} {
     % Mots-clés standards:
@@ -104,7 +104,7 @@
               continue, default, do, double, else, enum, extends, final, finally, float,
               for, goto, if, implements, import, instanceof, int, interface, long, native,
               new, package, private, protected, public, return, short, static, strictfp,
-              super, switch, synchronized, throw, throws, transient, try, void,
+              String, super, switch, synchronized, throw, throws, transient, try, void,
               volatile, while},
     morekeywords=[2]{this, true, null, false},
     %moredelim=[is][\javaClassHighlight]{class\ }{\{}, % Délimiteur pour les classes
@@ -114,8 +114,8 @@
     morestring=[b]",
     % Operators:
     % (The colour of otherkeywords is the same colour as keywordstyle[1])
-    otherkeywords={+, -, =, <, >, \%, +=, -=, *=, .}, % unable to set * and / as operators with comments (// and /**/)
-    moredelim=[is][\javaClassHighlight]{class\ }{\{}, % Delimiter for classes declarations
+    otherkeywords={+, -, =, <, >, \%, +=, -=, *=}, % unable to set * and / as operators with comments (// and /**/)
+    %moredelim=[is][\javaClassHighlight]{class\ }{\{}, % Delimiter for classes declarations (commented because not working)
 }
 
 % -- Python configuration --
@@ -185,6 +185,7 @@
               {7}{{{\color{blue}7}}}{1}
               {8}{{{\color{blue}8}}}{1}
               {9}{{{\color{blue}9}}}{1}
+              {.}{{{\color{red}.}}}{1}
 }
 
 \surroundwithmdframed[

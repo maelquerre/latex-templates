@@ -1,8 +1,9 @@
+% !TEX TS-program = XeLaTeX
 \documentclass[a4paper, 11pt]{gfm}
 
 \begin{document}
 
-\section{Github Markdown Floavored document}
+\section{Github Markdown Flavored document}
 
 Here is a sample {\bf Python} {\it listing}:
 
@@ -23,6 +24,16 @@ class Foo:
 
 x = len('abc')
 print(f.__doc__)
+\end{lstlisting}
+
+And a sample {\bf Java} {\it listing}:
+
+\begin{lstlisting}[language=Java]
+public class Application {
+    public static void main(String[] args) {
+        System.out.println("An awesome text.");
+    }
+}
 \end{lstlisting}
 
 \subsection{Headers}
