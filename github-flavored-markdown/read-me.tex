@@ -169,56 +169,88 @@ Some text to show that the reference links can follow later.
 
 Code blocks are part of the Markdown spec, but syntax highlighting isn't. However, many renderers -- like Github's and Markdown Here -- support syntax highlighting. Which languages are supported and how those language names should be written will vary from renderer to renderer. Markdown Here supports highlighting for dozens of languages (and not-really-languages, like diffs and HTTP headers); to see the complete list, and how to write the language names, see the highlight.js demo page.
 es
-\begin{mdframed}
+\begin{lstlisting}
 Inline `code` has `back-ticks around` it.
-\end{mdframed}
+\end{lstlisting}
 
-Inline \lstinline{code} has \lstinline{back-ticks around} it. \\
+Inline \code{code} has \code{back-ticks around} it. \\
 
-Blocks of code are either fenced by lines with three back-ticks \lstinline{` ` `}, or are indented with four spaces. I recommend only using the fenced code blocks -- they're easier and only they support syntax highlighting.
+Blocks of code are either fenced by lines with three back-ticks \code{` ` `}, or are indented with four spaces. I recommend only using the fenced code blocks -{-} they're easier and only they support syntax highlighting.
 
+\begin{lstlisting}
+```javascript
+var s = "JavaScript syntax highlighting";
+alert(s);
+```
+ 
+```python
+s = "Python syntax highlighting"
+print s
+```
+ 
+```
+No language indicated, so no syntax highlighting. 
+But let's throw in a <b>tag</b>.
+```
+\end{lstlisting}
+
+\begin{lstlisting}[language=JavaScript]
+var s = "JavaScript syntax highlighting";
+alert(s);
+\end{lstlisting}
+
+\begin{lstlisting}[language=Python]
+s = "Python syntax highlighting"
+print(s)
+\end{lstlisting}
+
+\begin{lstlisting}
+No language indicated, so no syntax highlighting. 
+But let's throw in a <b>tag</b>.
+\end{lstlisting}
 
 \subsection{Tables}
 
-Tables aren't part of the core Markdown spec, but they are part of GFM and \textit{Markdown Here} supports them. They are an easy way of adding tables to your email -{-} a task that would otherwise require copy-pasting from another application. \\
+Tables aren't part of the core Markdown spec, but they are part of GFM and \textit{Markdown Here} supports them. They are an easy way of adding tables to your email -{-} a task that would otherwise require copy-pasting from another application.
 
-Colons can be used to align columns. \\
+\begin{lstlisting}
+Colons can be used to align columns.
 
-\begin{tabular}{|p{3cm}|p{3cm}|c|}
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
+There must be at least 3 dashes separating each header cell.
+The outer pipes (|) are optional, and you don't need to make the 
+raw Markdown line up prettily. You can also use inline Markdown.
+
+Markdown | Less | Pretty
+--- | --- | ---
+*Still* | `renders` | **nicely**
+1 | 2 | 3
+\end{lstlisting}
+
+Colons can be used to align columns.\\
+
+\begin{tabular}{|l|c|r|}
 \hline
-\textbf{Tables} & \textbf{Are} & \textbf{Cool} \\
-\hline
-col 3 is &  right-aligned & \$1600 \\
-\hline
-col 2 is &  centered & \$12 \\
-\hline
-zebra stripes &  are neat & \$1 \\
-\hline
+\textbf{Tables} & \textbf{Are} & \textbf{Cool} \\\hline
+col 3 is &  right-aligned & \$1600 \\\hline
+col 2 is &  centered & \$12 \\\hline
+zebra stripes &  are neat & \$1 \\\hline
 \end{tabular}
 
 \vspace{0.5cm}
 
-There must be at least 3 dashes separating each header cell. The outer pipes (|) are optional, and you don't need to make the raw Markdown line up prettily. You can also use inline Markdown. \\
+There must be at least 3 dashes separating each header cell. The outer pipes (|) are optional, and you don't need to make the raw Markdown line up prettily. You can also use inline Markdown.\\
 
-%\rowcolors{2}{block-gray}{white}  % coloration du tableau
-%\renewcommand{\arraystretch}{2}  % espacement vertical à l'intérieur des cellules
-%\setlength{\tabcolsep}{0.5cm}  % espacement horizontal à l'intérieur des cellules
-%\begin{tabular}{|p{2cm}|p{2cm}|p{1cm}|}
-%\arrayrulecolor{table-gray}
-%\hline
-%\centering\textbf{Markdown} & \centering\textbf{Less} & \centering\textbf{Pretty} \tabularnewline
-%\hline
-%\textit{Still} & \centering \lstinline{renders} & \raggedleft \textbf{nicely} \tabularnewline
-%\hline
-%1 & 2 & 3 \tabularnewline
-%\hline
-%\end{tabular}
-
-\begin{tabular}{|l|c|r|}
+\begin{tabular}{|l|l|l|}
 \hline
-left & center & right \\\hline
-left and left & center and center & right and right \\\hline
-left & center & right \\\hline
+\textbf{Markdown} & \textbf{Less} & \textbf{Pretty} \\\hline
+\textit{Still} & \code{renders} & \textbf{nicely} \\\hline
+1 & 2 & 3 \\\hline
 \end{tabular}
 
 

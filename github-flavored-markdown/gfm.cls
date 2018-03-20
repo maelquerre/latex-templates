@@ -23,39 +23,47 @@
 % ------------------
 % Fonts declarations
 % ------------------
-\setmainfont{SF-Pro-Text}[Path=fonts/,
-                          UprightFont=*-Regular,
-                          BoldFont=*-Semibold,
-                          ItalicFont=*-RegularItalic,
-                          BoldItalicFont=*-SemiboldItalic]
+% Main font
+\setmainfont{SF-Pro-Text}[
+  Path=fonts/,
+  UprightFont=*-Regular,
+  BoldFont=*-Semibold,
+  ItalicFont=*-RegularItalic,
+  BoldItalicFont=*-SemiboldItalic]
 
-% Mono font of the document:
-\setmonofont{SFMono}[Path=fonts/,
-                     UprightFont=*-Regular,
-                     BoldFont=*-Bold,
-                     ItalicFont=*-RegularItalic,
-                     BoldItalicFont=*-BoldItalic,
-                     Scale=0.9]
+% Mono font
+\setmonofont{SFMono}[
+  Path=fonts/,
+  UprightFont=*-Regular,
+  BoldFont=*-Bold,
+  ItalicFont=*-RegularItalic,
+  BoldItalicFont=*-BoldItalic,
+  Scale=0.9]
 
-% Setting heading font for sections and subsections:
-\newfontfamily\headingfont{SF-Pro-Display}[Path=fonts/,
-                                           UprightFont=*-Regular,
-                                           BoldFont=*-Semibold,
-                                           ItalicFont=*-RegularItalic,
-                                           BoldItalicFont=*-SemiboldItalic]
+% Setting heading font for sections and subsections
+\newfontfamily\headingfont{SF-Pro-Display}[
+  Path=fonts/,
+  UprightFont=*-Regular,
+  BoldFont=*-Semibold,
+  ItalicFont=*-RegularItalic,
+  BoldItalicFont=*-SemiboldItalic]
 
 
-% No section numbering
+% No section numbering (numbering depth of zero)
+% ----------------------------------------------
 \setcounter{secnumdepth}{0}
 
 % No indent by default
+% --------------------
 \newlength\tindent
 \setlength{\tindent}{\parindent}
 \setlength{\parindent}{0pt}
 \renewcommand{\indent}{\hspace*{2.5em}}
 
 % Line spacing
+% ------------
 \renewcommand{\baselinestretch}{1.3}
+
 
 % ---------------------
 % Table configuration
@@ -63,8 +71,9 @@
 \rowcolors{2}{backgray}{white}  % Alternate row colours
 \arrayrulecolor{arrayrulegray} % Array rule colour
 \setlength\arrayrulewidth{1\p@} % Rule width
-\renewcommand{\arraystretch}{2}  % Cell vertical spacing
+\renewcommand{\arraystretch}{1.5}  % Cell vertical spacing
 \setlength{\tabcolsep}{0.5cm}  % Cell horizontal spacing
+
 
 % ---------------------
 % Colours configuration
@@ -74,7 +83,7 @@
 \definecolor{gray}{RGB}{106,115,125}
 \definecolor{arrayrulegray}{RGB}{223,226,229}
 \definecolor{rulegray}{RGB}{234,236,239}
-\definecolor{code-gray}{RGB}{244,244,245}
+\definecolor{codegray}{RGB}{243,244,244}
 \definecolor{backgray}{RGB}{246,248,250}
 \definecolor{red}{RGB}{215,58,73}
 \definecolor{blue}{RGB}{0,92,197}
@@ -82,48 +91,84 @@
 \definecolor{purple}{RGB}{111,66,193}
 \definecolor{orange}{RGB}{227,98,9}
 
-% mdframed configuration
+% ----------------------
+% Mdframed configuration
 % ----------------------
 \mdfsetup{leftmargin=0,
           rightmargin=0,
           innertopmargin=5pt,
           innerrightmargin=10pt,
           innerbottommargin=5pt,
-          innerleftmargin=10pt,}
+          innerleftmargin=10pt}
 
-%----------------------------------------------------------------------------------------
-%	CODE INCLUSION CONFIGURATION
-%----------------------------------------------------------------------------------------
-% -- Java configuration --
-% Set the delimiter for Java classes declarations (commented because not working)
-%\newcommand{\javaClassHighlight}[1]{\textcolor{red}{class} \textcolor{purple}{#1} \{}
 
+% ---------------------------------------------------------------------------------------
+%                             LISTING INCLUSION CONFIGURATION
+% ---------------------------------------------------------------------------------------
+%
+
+% Code snippets with rounded corners
+% ----------------------------------
+\newcommand\code[2][fill=codegray]{%
+  \tikz[baseline]%
+  \node[inner ysep=1pt, inner xsep=2.5pt, anchor=text, rectangle, rounded corners=2pt, #1]{
+    \strut\texttt{\lstinline{#2}}
+  };
+}
+
+% ------------------
+% Java configuration
+% ------------------
 \lstdefinelanguage{Java} {
-    % Mots-clés standards:
+    % Standard keywords:
     keywords={abstract, assert, boolean, break, byte, case, catch, char, class, const,
               continue, default, do, double, else, enum, extends, final, finally, float,
               for, goto, if, implements, import, instanceof, int, interface, long, native,
               new, package, private, protected, public, return, short, static, strictfp,
               String, super, switch, synchronized, throw, throws, transient, try, void,
               volatile, while},
+    % Built-in functions:
     morekeywords=[2]{this, true, null, false},
-    %moredelim=[is][\javaClassHighlight]{class\ }{\{}, % Délimiteur pour les classes
+    %
     morecomment=[s]{/*}{*/},
     morecomment=[l]{//},
-    morestring=[b]',
-    morestring=[b]",
+    %
+    morestring=[b]', % Strings defined with "
+    morestring=[b]", % Strings defined with '
     % Operators:
     % (The colour of otherkeywords is the same colour as keywordstyle[1])
     otherkeywords={+, -, =, <, >, \%, +=, -=, *=}, % unable to set * and / as operators with comments (// and /**/)
-    %moredelim=[is][\javaClassHighlight]{class\ }{\{}, % Delimiter for classes declarations (commented because not working)
 }
 
-% -- Python configuration --
-% Set the delimiter for classes declarations
+% ------------------------
+% Javascript configuration
+% ------------------------
+\lstdefinelanguage{JavaScript} {
+    % Standard keywords:
+    keywords={break, do, instanceof, typeof, case, else, new, var, catch, finally,
+              return, void, continue, for, switch, while, debugger, function,
+              with, default, if, throw, delete, in, try},
+    % Built-in functions:
+    morekeywords=[2]{false, null, this, true},
+    %
+    morecomment=[s]{/*}{*/},
+    morecomment=[l]{//},
+    %
+    morestring=[b]', % Strings defined with "
+    morestring=[b]", % Strings defined with '
+    % Operators:
+    % (The colour of otherkeywords is the same colour as keywordstyle[1])
+    otherkeywords={+, -, =, <, >, \%, +=, -=, *=}, % unable to set * and / as operators with comments (// and /**/)
+}
+
+% --------------------
+% Python configuration
+% --------------------
+% Set the delimiter for classes declarations ('class TheClass:')
 \newcommand{\pythonClassHighlight}[1]{\textcolor{red}{class} \textcolor{purple}{#1}:}
-% Set the delimiter for functions declarations
+% Set the delimiter for functions declarations ('def function()')
 \newcommand{\functionDefHighlight}[1]{\textcolor{red}{def} \textcolor{purple}{#1}(}
-% Set the delimiter for special methods declarations
+% Set the delimiter for special methods declarations ('def __init__()')
 \newcommand{\specialMethodHighlight}[1]{\textcolor{red}{def} \textcolor{blue}{\_\_#1\_\_}}
 \lstdefinelanguage{Python} {
 	% Standard keywords:
@@ -150,25 +195,30 @@
     morestring=[b]", % Strings defined with "
     morestring=[b]', % Strings defined with '
     %
+    % Functions highlighting:
     moredelim=[is][\pythonClassHighlight]{class\ }{:}, % Delimiter for classes declarations
 	moredelim=[is][\functionDefHighlight]{def\ }{(}, % Delimiter for functions declarations
 	moredelim=[is][\specialMethodHighlight]{def\ __}{__}, % Delimiter for special methods declarations
 	moredelim=[s][\color{blue}]{__}{__}, % Delimiter for special methods
 }
                                           
-% -- General configuration --
+% ---------------------
+% General configuration
+% ---------------------
 \lstset {
     frame=none, % No frame around code
-    backgroundcolor=\color{backgray}, % Background colour
-    basicstyle=\linespread{1.1}\ttfamily, % Line spread and ttfamily font
+    backgroundcolor=\color{backgray},
+    basicstyle=\linespread{1.1}\ttfamily, % Line spread of 1.1 between lines and ttfamily font
     upquote=true, % Straight single quotes
     columns=flexible, % Flexible column alignment
     breaklines=true, % Line breaks
+    tabsize=4, % 4 spaces per tab
     keepspaces=true, % Not drop spaces to fix column alignment and always convert tabulators to spaces
+    %
+    % Style:
     commentstyle=\color{gray}, % Comments are gray
     stringstyle=\color{dark-blue}, % Strings are dark-blue
     showstringspaces=false, % Don't put marks in string spaces
-    tabsize=4, % 4 spaces per tab
     %
     keywordstyle=[1]\color{red}, % Keywords style
     keywordstyle=[2]\color{blue}, % Built-in functions style
@@ -188,12 +238,19 @@
               {.}{{{\color{red}.}}}{1}
 }
 
+% Surround lstlistings with mdframed
+% ----------------------------------
 \surroundwithmdframed[
   hidealllines=true, % hide mdframed lines
   font=\ttfamily,
   backgroundcolor=backgray,
   roundcorner=3pt]{lstlisting}
-  
+\surroundwithmdframed[
+  hidealllines=true, % hide mdframed lines
+  font=\ttfamily,
+  backgroundcolor=backgray,
+  roundcorner=3pt]{lstinline}
+
 % Creates a new command to include a Python listing:
 % The first parameter is the filename of the script (without .py) and the second parameter is the caption
 \newcommand{\pythonlisting}[2]{
@@ -233,5 +290,3 @@
 \titleformat{\subsection}{\LARGE\bfseries\headingfont}{\thesubsection}{1em}{}[{\color{rulegray}\titlerule[1pt]}]  % horizontal rule under subsections
 \titleformat{\subsubsection}{\Large\bfseries\headingfont}{\thesubsection}{1em}{}[{\color{rulegray}}]
 \titleformat*{\paragraph}{\large\bfseries\headingfont}
-
-
