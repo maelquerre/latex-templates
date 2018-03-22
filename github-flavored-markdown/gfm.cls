@@ -162,6 +162,24 @@
 }
 
 % --------------------
+% Markdown configuration
+% --------------------
+\lstdefinelanguage{Markdown} {
+% Redefine black color for numbers and dot
+literate=*{0}{{{\color{black}0}}}{1}
+          {1}{{{\color{black}1}}}{1}
+          {2}{{{\color{black}2}}}{1}
+          {3}{{{\color{black}3}}}{1}
+          {4}{{{\color{black}4}}}{1}
+          {5}{{{\color{black}5}}}{1}
+          {6}{{{\color{black}6}}}{1}
+          {7}{{{\color{black}7}}}{1}
+          {8}{{{\color{black}8}}}{1}
+          {9}{{{\color{black}9}}}{1}
+          {.}{{{\color{black}.}}}{1}
+}
+
+% --------------------
 % Python configuration
 % --------------------
 % Set the delimiter for classes declarations ('class TheClass:')
