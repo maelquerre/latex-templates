@@ -1,78 +1,113 @@
 % !TEX encoding = UTF-8 Unicode
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{gfm}
+\ProvidesClass{assignment}
 
 % ----------
 % Base class
 % ----------
 \LoadClassWithOptions{article}
 
-% --------------
-% Other packages
-% --------------
-\RequirePackage[quiet]{fontspec} % Needed for XeLaTeX fonts usage
-\RequirePackage[margin=2cm]{geometry}  % Margin definition
-\RequirePackage[normalem]{ulem}  % Needed for scratched text
-\RequirePackage{titlesec} % Needed for sections customisation
-\RequirePackage[table]{xcolor} % Needed to manage colors
-\RequirePackage[framemethod=TikZ]{mdframed} % Needed for mdframed frames
-\RequirePackage{listings} % Needed for lstlistings
-\RequirePackage{url, hyperref} % Needed for links
+% -----------------
+% External packages
+% -----------------
+% Margins definition
+\RequirePackage[margin=2.5cm]{geometry}
+% Required for graphics inclusions
+\RequirePackage{graphicx}
+% Required for links
+\RequirePackage{url, hyperref}
+% Needed for \if-\then-\else statement
+\RequirePackage{xifthen}
+% Needed for \ifxetex-\else-\fi statement
+\RequirePackage{ifxetex}
+\ifxetex
+  \RequirePackage[quiet]{fontspec}
+\else
+  \RequirePackage[utf8]{inputenc}
+  \RequirePackage[T1]{fontenc}
+  \RequirePackage{lmodern}
+\fi
+% Required for insertion of code
+\RequirePackage{listings}
+% Text Com­pan­ion fonts, which pro­vide many text sym­bols
+\RequirePackage{textcomp}
+% Put figures where you actually want
+\RequirePackage{float}
+% Required for color definitions
+\RequirePackage{xcolor}
 
-% ------------------
-% Fonts declarations
-% ------------------
-% Main font
-\setmainfont{SF-Pro-Text}[
-  Path=fonts/,
-  UprightFont=*-Regular,
-  BoldFont=*-Semibold,
-  ItalicFont=*-RegularItalic,
-  BoldItalicFont=*-SemiboldItalic]
-
-% Mono font
-\setmonofont{SFMono}[
-  Path=fonts/,
-  UprightFont=*-Regular,
-  BoldFont=*-Bold,
-  ItalicFont=*-RegularItalic,
-  BoldItalicFont=*-BoldItalic,
-  Scale=0.9]
-
-% Setting heading font for sections and subsections
-\newfontfamily\headingfont{SF-Pro-Display}[
-  Path=fonts/,
-  UprightFont=*-Regular,
-  BoldFont=*-Semibold,
-  ItalicFont=*-RegularItalic,
-  BoldItalicFont=*-SemiboldItalic]
+% ----------------------
+% Commands for meta data
+% ----------------------
+% Institute
+\newcommand{\institute}[1]{\def\@institute{#1}}
+% Department
+\newcommand{\department}[1]{\def\@department{#1}}
+% Subject
+\newcommand{\subject}[1]{\def\@subject{#1}}
 
 
-% No section numbering (numbering depth of zero)
-% ----------------------------------------------
-\setcounter{secnumdepth}{0}
-
-% No indent by default
 % --------------------
-\newlength\tindent
-\setlength{\tindent}{\parindent}
-\setlength{\parindent}{0pt}
-\renewcommand{\indent}{\hspace*{2.5em}}
+% Assignment structure
+% --------------------
+% Header
+% ------
+\newcommand{\makeheader}{%
+  \noindent%
+  \ifthenelse{\isundefined{\@institute}}{}{\@institute}
+  \ifthenelse{\isundefined{\@date}}{}{\hfill\@date\\}
+  \ifthenelse{\isundefined{\@department}}{}{
+    \begin{tabular}{@{}l}
+      \@department
+    \end{tabular}\hfill
+  }
+  \ifthenelse{\isundefined{\@author}}{}{
+    \begin{tabular}{r@{}}
+      \@author
+    \end{tabular}
+  }
+  \vspace{1em}
+  
+  \ifthenelse{\isundefined{\@title}}{
+    \ifthenelse{\isundefined{\@subject}}{
+      \begin{center}
+        {\huge\textbf{Assignment}}
+      \end{center}
+    }{
+      \begin{center}
+        {\Large{\@subject}}
+        \vspace{1em}
+        {\huge\textbf{Assignment}}
+      \end{center}
+    }
+  }
+  { % if title is defined
+    \ifthenelse{\isundefined{\@subject}}{}{
+      \begin{center}
+        {\Large{\@subject}}
+      \end{center}
+      \vspace{.5em}
+    }
+    \begin{center}
+      {\huge\textbf{\@title}}
+    \end{center}
+  }
+  \vspace{1.5em}
+}
 
-% Line spacing
-% ------------
-\renewcommand{\baselinestretch}{1.3}
 
-
-% ---------------------
-% Table configuration
-% ---------------------
-\rowcolors{2}{backgray}{white}  % Alternate row colours
-\arrayrulecolor{arrayrulegray} % Array rule colour
-\setlength\arrayrulewidth{1\p@} % Rule width
-\renewcommand{\arraystretch}{1.5}  % Cell vertical spacing
-\setlength{\tabcolsep}{0.5cm}  % Cell horizontal spacing
+% Fancyhdr (headers and footers)
+% ------------------------------
+\RequirePackage{lastpage}
+\RequirePackage{fancyhdr}
+\pagestyle{fancy}
+\cfoot{\thepage~/ \pageref{LastPage}} % style de numéro de page
+\fancypagestyle{plain}{%
+\fancyhf{} % vide l’en-tête et le pied~de~page.
+\fancyfoot[C]{\thepage~on \pageref{LastPage}} % style de numéro de page
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}}
 
 
 % ---------------------
@@ -90,17 +125,6 @@
 \definecolor{dark-blue}{RGB}{3,47,98}
 \definecolor{purple}{RGB}{111,66,193}
 \definecolor{orange}{RGB}{227,98,9}
-
-% ----------------------
-% Mdframed configuration
-% ----------------------
-\mdfsetup{leftmargin=0,
-          rightmargin=0,
-          innertopmargin=5pt,
-          innerrightmargin=10pt,
-          innerbottommargin=5pt,
-          innerleftmargin=10pt}
-
 
 % ---------------------------------------------------------------------------------------
 %                             LISTING INCLUSION CONFIGURATION
@@ -224,8 +248,10 @@ literate=*{0}{{{\color{black}0}}}{1}
 % General configuration
 % ---------------------
 \lstset {
-    frame=none, % No frame around code
-    backgroundcolor=\color{backgray},
+    frame=shadowbox, % Lines around listing
+    framexleftmargin=5pt,  % Margin between the code and the frameline
+	xleftmargin=25pt, % Margin between the left border of the page and the listing
+	belowskip=1.5em, % Space below the listing
     basicstyle=\linespread{1.1}\ttfamily, % Line spread of 1.1 between lines and ttfamily font
     upquote=true, % Straight single quotes
     columns=flexible, % Flexible column alignment
@@ -233,6 +259,12 @@ literate=*{0}{{{\color{black}0}}}{1}
     tabsize=4, % 4 spaces per tab
     keepspaces=true, % Not drop spaces to fix column alignment and always convert tabulators to spaces
     %
+    % Line numbering:
+    numbers=left, % Line numbers on left
+	firstnumber=1, % Line numbers start with line 1
+	numberstyle=\tt\scriptsize\color{gray}, % Line numbers are gray and small
+	numbersep=15pt, % Distance between the numbers and the listing
+	%
     % Style:
     commentstyle=\color{gray}, % Comments are gray
     stringstyle=\color{dark-blue}, % Strings are dark-blue
@@ -255,56 +287,3 @@ literate=*{0}{{{\color{black}0}}}{1}
               {9}{{{\color{blue}9}}}{1}
               {.}{{{\color{red}.}}}{1}
 }
-
-% Surround lstlistings with mdframed
-% ----------------------------------
-\surroundwithmdframed[
-  hidealllines=true, % hide mdframed lines
-  font=\ttfamily,
-  backgroundcolor=backgray,
-  roundcorner=3pt]{lstlisting}
-\surroundwithmdframed[
-  hidealllines=true, % hide mdframed lines
-  font=\ttfamily,
-  backgroundcolor=backgray,
-  roundcorner=3pt]{lstinline}
-
-% Creates a new command to include a Python listing:
-% The first parameter is the filename of the script (without .py) and the second parameter is the caption
-\newcommand{\pythonlisting}[2]{
-\begin{itemize}
-\item[]\lstinputlisting[language=Python, caption=#2, label=#1]{#1.py}
-\end{itemize}
-}
-
-% Creates a new command to include a Java listing:
-% The first parameter is the filename of the script (without .java) and the second parameter is the caption
-\newcommand{\javalisting}[2]{
-\begin{itemize}
-\item[]\lstinputlisting[language=Java, caption=#2, label=#1]{#1.py}
-\end{itemize}
-}
-
-\newenvironment{blockquote}[1][]{
-  \noindent
-  \begin{mdframed}[
-    linewidth=2pt,
-    linecolor=arrayrulegray,
-    topline=false, rightline=false, bottomline=false,
-    skipabove=1pt, skipbelow=1pt,
-    innertopmargin=0pt, innerrightmargin=0pt, innerbottommargin=0pt,
-    innerleftmargin=1em,  % Distance between vertical rule and blockquote content
-    skipabove=.5\baselineskip]
-  \color{gray}
-  %\par\medskip
-}
-{
-  \end{mdframed}
-}
-
-% Title formats configuration
-% ---------------------------
-\titleformat{\section}{\huge\bfseries\headingfont}{\thesection}{1em}{}[{\color{rulegray}\titlerule[1pt]}]  % horizontal rule under sections
-\titleformat{\subsection}{\LARGE\bfseries\headingfont}{\thesubsection}{1em}{}[{\color{rulegray}\titlerule[1pt]}]  % horizontal rule under subsections
-\titleformat{\subsubsection}{\Large\bfseries\headingfont}{\thesubsection}{1em}{}[{\color{rulegray}}]
-\titleformat*{\paragraph}{\large\bfseries\headingfont}
