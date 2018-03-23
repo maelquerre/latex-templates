@@ -36,6 +36,8 @@
 \RequirePackage{float}
 % Required for color definitions
 \RequirePackage{xcolor}
+% Required for coloured frames
+\RequirePackage{tikz}
 
 % ----------------------
 % Commands for meta data
@@ -57,43 +59,28 @@
   \noindent%
   \ifthenelse{\isundefined{\@institute}}{}{\@institute}
   \ifthenelse{\isundefined{\@date}}{}{\hfill\@date\\}
-  \ifthenelse{\isundefined{\@department}}{}{
-    \begin{tabular}{@{}l}
-      \@department
-    \end{tabular}\hfill
+  \ifthenelse{\isundefined{\@department}}{}{%
+    \begin{tabular}{@{}l}%
+      \@department%
+    \end{tabular}\hfill%
+  }%
+  \ifthenelse{\isundefined{\@author}}{}{%
+    \begin{tabular}{r@{}}%
+      \@author%
+    \end{tabular}%
+  }%
+  \vspace{.5em}
+
+  \ifthenelse{\isundefined{\@subject}}{}{%
+    \begin{center}%
+      {\Large{\@subject}}%
+    \end{center}%
+    \vspace{.2em}
   }
-  \ifthenelse{\isundefined{\@author}}{}{
-    \begin{tabular}{r@{}}
-      \@author
-    \end{tabular}
-  }
+  \begin{center}%
+    {\huge\textbf{\@title}}%
+  \end{center}%
   \vspace{1em}
-  
-  \ifthenelse{\isundefined{\@title}}{
-    \ifthenelse{\isundefined{\@subject}}{
-      \begin{center}
-        {\huge\textbf{Assignment}}
-      \end{center}
-    }{
-      \begin{center}
-        {\Large{\@subject}}
-        \vspace{1em}
-        {\huge\textbf{Assignment}}
-      \end{center}
-    }
-  }
-  { % if title is defined
-    \ifthenelse{\isundefined{\@subject}}{}{
-      \begin{center}
-        {\Large{\@subject}}
-      \end{center}
-      \vspace{.5em}
-    }
-    \begin{center}
-      {\huge\textbf{\@title}}
-    \end{center}
-  }
-  \vspace{1.5em}
 }
 
 
@@ -105,7 +92,7 @@
 \cfoot{\thepage~/ \pageref{LastPage}} % style de numéro de page
 \fancypagestyle{plain}{%
 \fancyhf{} % vide l’en-tête et le pied~de~page.
-\fancyfoot[C]{\thepage~on \pageref{LastPage}} % style de numéro de page
+\fancyfoot[C]{\thepage~/ \pageref{LastPage}} % style de numéro de page
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}}
 
@@ -120,24 +107,24 @@
 \definecolor{rulegray}{RGB}{234,236,239}
 \definecolor{codegray}{RGB}{243,244,244}
 \definecolor{backgray}{RGB}{246,248,250}
-\definecolor{red}{RGB}{215,58,73}
 \definecolor{blue}{RGB}{0,92,197}
 \definecolor{dark-blue}{RGB}{3,47,98}
-\definecolor{purple}{RGB}{111,66,193}
 \definecolor{orange}{RGB}{227,98,9}
+\definecolor{purple}{RGB}{111,66,193}
+\definecolor{red}{RGB}{215,58,73}
 
 % ---------------------------------------------------------------------------------------
 %                             LISTING INCLUSION CONFIGURATION
 % ---------------------------------------------------------------------------------------
 %
 
-% Code snippets with rounded corners
-% ----------------------------------
+% Code snippets
+% -------------
 \newcommand\code[2][fill=codegray]{%
   \tikz[baseline]%
-  \node[inner ysep=1pt, inner xsep=2.5pt, anchor=text, rectangle, rounded corners=2pt, #1]{
-    \strut\texttt{\lstinline{#2}}
-  };
+  \node[draw, rectangle, gray, inner ysep=1pt, inner xsep=2.5pt, anchor=text, #1]{%
+    \strut\texttt{\textcolor{black}{\lstinline{#2}}}%
+  };%
 }
 
 % ------------------
@@ -248,7 +235,7 @@ literate=*{0}{{{\color{black}0}}}{1}
 % General configuration
 % ---------------------
 \lstset {
-    frame=shadowbox, % Lines around listing
+    frame=single, % Lines around listing
     framexleftmargin=5pt,  % Margin between the code and the frameline
 	xleftmargin=25pt, % Margin between the left border of the page and the listing
 	belowskip=1.5em, % Space below the listing

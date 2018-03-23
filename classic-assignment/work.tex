@@ -1,6 +1,6 @@
 \documentclass{assignment}
 
-\usepackage{lipsum} % Insert dummy text into the template
+\usepackage{lipsum} % Required to insert dummy text into the template
 
 \institute{University of Caen}
 \date{\today}
@@ -14,9 +14,9 @@
 
 \makeheader
 
-\section{Problem 1}
+\section{Python problem}
 
-The Listing \ref{lstpython} shows a Python script.
+The Listing \ref{lstpython} shows Python \code{code}.
 
 \begin{lstlisting}[language=Python, caption=Sample Python script with highlighting, label=lstpython]
 def f(x):
@@ -39,33 +39,42 @@ print(f.__doc__)
 
 \lipsum[1]
 
-\vskip 1em
-
-\lipsum[7]
-
-\section{Problem 2}
+\section{Java problem}
 
 \lipsum[2]
-\vspace{1em}
-
-\lipsum[3]
-
-\vspace{1em}
 
 The Figure \ref{exemple} shows an example.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\textwidth]{images/example_figure.png}
+\includegraphics[width=0.5\textwidth]{images/example_figure.png}
 \caption{A sample figure}
 \label{exemple}
 \end{figure}
 
+\lipsum[3]
+
+\begin{lstlisting}[language=Java, caption=Sample Java script]
+public class Foo {
+
+    public static void main(String[] args) {
+        printOne();
+        printOne();
+        printTwo();
+    }
+
+    public static void printOne() {
+        System.out.println("Hello world");
+    }
+    
+    public static void printTwo() {
+        printOne();
+        printOne();
+    }
+
+}
+\end{lstlisting}
+
 \lipsum[4]
-\lipsum[5]
-
-\vspace{1em}
-
-\lipsum[6]
 
 \end{document}
