@@ -1,16 +1,19 @@
 % !TEX encoding = UTF-8 Unicode
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{assignment}
+\ProvidesClass{modern}
 
 % ----------
 % Base class
 % ----------
 \LoadClassWithOptions{article}
 
+
 % -----------------
 % External packages
 % -----------------
+% Needed for XeLaTeX fonts usage
+\RequirePackage{fontspec}
 % Margins definition
 \RequirePackage[margin=2.5cm]{geometry}
 % Required for graphics inclusions
@@ -19,15 +22,6 @@
 \RequirePackage{url, hyperref}
 % Needed for \if-\then-\else statement
 \RequirePackage{xifthen}
-% Needed for \ifxetex-\else-\fi statement
-\RequirePackage{ifxetex}
-\ifxetex
-  \RequirePackage[quiet]{fontspec}
-\else
-  \RequirePackage[utf8]{inputenc}
-  \RequirePackage[T1]{fontenc}
-  \RequirePackage{lmodern}
-\fi
 % Required for insertion of code
 \RequirePackage{listings}
 % Text Com­pan­ion fonts, which pro­vide many text sym­bols
@@ -38,6 +32,26 @@
 \RequirePackage{xcolor}
 % Required for coloured frames
 \RequirePackage{tikz}
+
+
+% ------------------
+% Fonts declarations
+% ------------------
+% Main font
+\setmainfont{FiraSans}[
+  Path=fonts/,
+  UprightFont=*-Light,
+  BoldFont=*-Regular,
+  ItalicFont=*-LightItalic,
+  BoldItalicFont=*-Italic]
+
+% Mono font
+\setmonofont{FiraCode}[
+  Path=fonts/,
+  UprightFont=*-Regular,
+  BoldFont=*-Medium,
+  Scale=0.9]
+
 
 % ----------------------
 % Commands for meta data
@@ -50,9 +64,9 @@
 \newcommand{\subject}[1]{\def\@subject{#1}}
 
 
-% --------------------
-% Assignment structure
-% --------------------
+% ------------------
+% Document structure
+% ------------------
 % Header
 % ------
 \newcommand{\makeheader}{%
@@ -83,7 +97,6 @@
   \vspace{1em}
 }
 
-
 % Fancyhdr (headers and footers)
 % ------------------------------
 \RequirePackage{lastpage}
@@ -100,6 +113,7 @@
 % ---------------------
 % Colours configuration
 % ---------------------
+\definecolor{black}{RGB}{0,0,0}
 \definecolor{deep-gray}{RGB}{36,41,46}
 \definecolor{darkgray}{RGB}{50,50,50}
 \definecolor{gray}{RGB}{106,115,125}
@@ -113,16 +127,19 @@
 \definecolor{purple}{RGB}{111,66,193}
 \definecolor{red}{RGB}{215,58,73}
 
+
 % ---------------------------------------------------------------------------------------
 %                             LISTING INCLUSION CONFIGURATION
 % ---------------------------------------------------------------------------------------
 %
 
+% -------------
 % Code snippets
 % -------------
 \newcommand\code[2][fill=codegray]{%
   \tikz[baseline]%
-  \node[draw, rectangle, gray, inner ysep=1pt, inner xsep=2.5pt, anchor=text, #1]{%
+  \node[draw, rectangle, gray, inner ysep=1pt, inner xsep=2.5pt, anchor=text,
+        rounded corners=2pt, #1]{%
     \strut\texttt{\textcolor{black}{\lstinline{#2}}}%
   };%
 }
@@ -240,6 +257,7 @@ literate=*{0}{{{\color{black}0}}}{1}
 	xleftmargin=25pt, % Margin between the left border of the page and the listing
 	belowskip=1.5em, % Space below the listing
     basicstyle=\linespread{1.1}\ttfamily, % Line spread of 1.1 between lines and ttfamily font
+    backgroundcolor=\color{backgray},
     upquote=true, % Straight single quotes
     columns=flexible, % Flexible column alignment
     breaklines=true, % Line breaks
