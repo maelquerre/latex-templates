@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{f}\PYG{p}{(}\PYG{n}{x}\PYG{p}{):}
+    \PYG{n}{s} \PYG{o}{=} \PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Test\PYGZdq{}}\PYG{p}{,} \PYG{l+m+mi}{2} \PYG{o}{+} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}a\PYGZsq{}}\PYG{p}{:} \PYG{l+s+s1}{\PYGZsq{}b\PYGZsq{}}\PYG{p}{\PYGZcb{},} \PYG{n}{x}\PYG{p}{)}  \PYG{c+c1}{\PYGZsh{} Comment}
+    \PYG{k}{if} \PYG{n}{s}\PYG{p}{:}
+        \PYG{k}{print}\PYG{p}{(}\PYG{n}{s}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{lower}\PYG{p}{())}
+
+\PYG{k}{class} \PYG{n+nc}{Foo}\PYG{p}{:}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+        \PYG{n}{byte\PYGZus{}string} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}newline:}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{ also newline:}\PYG{l+s+se}{\PYGZbs{}x0a}\PYG{l+s+s1}{\PYGZsq{}}
+        \PYG{n}{text\PYGZus{}string} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Cyrillic R is }\PYG{l+s+se}{\PYGZbs{}u042f}\PYG{l+s+s2}{. Oops \PYGZbs{}u042g\PYGZdq{}}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{makeSense}\PYG{p}{(}\PYG{n}{whatever}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}
+
+    \PYG{k}{def} \PYG{n+nf}{make\PYGZus{}sense}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{whatever}\PYG{p}{):}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sense} \PYG{o}{=} \PYG{n}{whatever}
+
+\PYG{n}{x} \PYG{o}{=} \PYG{n+nb}{len}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}abc\PYGZsq{}}\PYG{p}{)}
+\PYG{k}{print}\PYG{p}{(}\PYG{n}{f}\PYG{o}{.}\PYG{n+nv+vm}{\PYGZus{}\PYGZus{}doc\PYGZus{}\PYGZus{}}\PYG{p}{)}
+\end{Verbatim}

@@ -1,4 +1,5 @@
 % !TEX encoding = UTF-8 Unicode
+% !TEX TS-program = XeLaTeX --shell-escape
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{modern}
@@ -32,6 +33,12 @@
 \RequirePackage{xcolor}
 % Required for coloured frames
 \RequirePackage{tikz}
+% Needed to get the last page number
+\RequirePackage{lastpage}
+% Custom headers and footers
+\RequirePackage{fancyhdr}
+% Syntax highlighting
+\RequirePackage{minted}
 
 
 % ------------------
@@ -99,8 +106,6 @@
 
 % Fancyhdr (headers and footers)
 % ------------------------------
-\RequirePackage{lastpage}
-\RequirePackage{fancyhdr}
 \pagestyle{fancy}
 \cfoot{\thepage~/ \pageref{LastPage}} % style de numéro de page
 \fancypagestyle{plain}{%

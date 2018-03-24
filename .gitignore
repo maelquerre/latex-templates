@@ -1,6 +1,12 @@
+# System files
 .DS_Store
+
+# LaTeX compilation files
 *.aux
 *.log
 *.out
 *.synctex.gz
 *.toc
+
+# Tests directory
+tests/
