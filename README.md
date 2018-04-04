@@ -1,4 +1,3 @@
 # LaTeX templates
 
-Here are my LaTeX templates to make beautiful documents (assignement, readme,
-etc.).
+Here are my LaTeX templates to simplify document creations (assignement, readme, etc.).
