@@ -1,4 +1,6 @@
-# Typesetting
+# Modern assignment
 
-You must typeset your document with XeLaTeX or LuaLaTeX since external fonts are used.
+## Typesetting
+
+You must typeset your document with **XeLaTeX** or **LuaLaTeX** since external fonts are used.
 
