@@ -37,8 +37,6 @@
 \RequirePackage{lastpage}
 % Custom headers and footers
 \RequirePackage{fancyhdr}
-% Syntax highlighting
-\RequirePackage{minted}
 
 
 % ------------------
