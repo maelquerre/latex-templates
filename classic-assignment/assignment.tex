@@ -1,0 +1,42 @@
+\documentclass{classic}
+
+\usepackage{lipsum} % Required to insert dummy text into the template
+
+\institute{University of Caen}
+\date{\today}
+\author{John Smith}
+\title{Assignment 1}
+\department{Computer Science}
+\subject{Programming}
+
+\begin{document}
+\thispagestyle{plain}
+
+\makeheader
+
+\section{Python problem}
+
+Here is a Python code:
+
+\begin{lstlisting}[language=Python]
+def f(x):
+	s = ("Test", 2 + 3, {'a': 'b'}, x)  # Comment
+	if s:
+		print(s[0].lower())
+
+class Foo:
+	def __init__(self):
+		byte_string = 'newline:\n also newline:\x0a'
+		text_string = "Cyrillic R is \u042f."
+		self.makeSense(whatever=1)
+	
+	def make_sense(self, whatever):
+		self.sense = whatever
+
+x = len('abc')
+print(f.__doc__)
+\end{lstlisting}
+
+\lipsum[1]
+
+\end{document}

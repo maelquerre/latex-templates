@@ -96,6 +96,10 @@
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}}
 
+% Line spacing
+% ------------
+\renewcommand{\baselinestretch}{1.1}
+
 
 % ---------------------
 % Colours configuration
