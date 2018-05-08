@@ -1,0 +1,68 @@
+% !TEX TS-program = XeLaTeX
+\documentclass[a4paper, 11pt]{gfm}
+
+\begin{document}
+
+\section{Github Flavoured Markdown document}
+
+A Github Flavoured Markdown document style in \LaTeX.
+
+\subsection{Code and Syntax Highlighting}
+
+Inline code can be inserted using the \code{\\code} command. A code block can be inserted using the \code{lstlisting} environment.
+
+\begin{lstlisting}[language=JavaScript]
+var s = "JavaScript syntax highlighting";
+alert(s);
+\end{lstlisting}
+
+\begin{lstlisting}[language=Python]
+"""Python syntax highlighting."""
+
+def f(x):
+	s = ("Test", 2 + 3, {'a': 'b'}, x)  # Comment
+	if s:
+		print(s[0].lower())
+
+class Foo:
+	def __init__(self):
+		byte_string = 'newline:\n also newline:\x0a'
+		text_string = "Cyrillic Я is \u042f."
+		self.makeSense(whatever=1)
+	
+	def make_sense(self, whatever):
+		self.sense = whatever
+
+x = len('abc')
+print(f.__doc__)
+\end{lstlisting}
+
+\subsection{Tables}
+
+\begin{tabular}{|l|c|r|}
+\hline
+\textbf{Tables} & \textbf{Are} & \textbf{Cool} \\\hline
+col 3 is &  right-aligned & \$1600 \\\hline
+col 2 is &  centered & \$12 \\\hline
+zebra stripes &  are neat & \$1 \\\hline
+\end{tabular}
+
+\vspace{1em}
+
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Markdown} & \textbf{Less} & \textbf{Pretty} \\\hline
+\textit{Still} & \code{renders} & \textbf{nicely} \\\hline
+1 & 2 & 3 \\\hline
+\end{tabular}
+
+
+\subsection{Blockquotes}
+
+A blockquote can be inserted using the \code{blockquote} environment.
+
+\begin{blockquote}
+This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone.
+\end{blockquote}
+
+\end{document}

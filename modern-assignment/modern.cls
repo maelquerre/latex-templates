@@ -179,12 +179,13 @@
 	numbersep=15pt, % Distance between the numbers and the listing
 	%
     % Style:
-    commentstyle=\color{gray}, % Comments are gray
-    stringstyle=\color{dark-blue}, % Strings are dark-blue
+    commentstyle=\color{gray},
+    stringstyle=\color{dark-blue},
     showstringspaces=false, % Don't put marks in string spaces
     %
     keywordstyle=[1]\color{red}, % Keywords style
     keywordstyle=[2]\color{blue}, % Built-in functions style
+    keywordstyle=[3]\color{purple}, % Other methods style
     %
     % Colours for numbers:
     % (The star indicates that literate replacements should not be made in strings, comments, and other delimited text)
@@ -232,7 +233,9 @@
               return, void, continue, for, switch, while, debugger, function,
               with, default, if, throw, delete, in, try},
     % Built-in functions:
-    morekeywords=[2]{false, null, this, true},
+    morekeywords=[2]{append, false, find, log, null, prepend, this, true},
+    % Other methods:
+    morekeywords=[3]{alert, attr, console, css, each, hide, html, off, on, show, text, val},
     %
     morecomment=[s]{/*}{*/},
     morecomment=[l]{//},

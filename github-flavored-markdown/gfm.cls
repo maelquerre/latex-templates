@@ -156,6 +156,7 @@
     %
     keywordstyle=[1]\color{red}, % Keywords style
     keywordstyle=[2]\color{blue}, % Built-in functions style
+    keywordstyle=[3]\color{purple}, % Other methods style
     %
     % Colours for numbers:
     % (The star indicates that literate replacements should not be made in strings, comments, and other delimited text)
@@ -183,7 +184,7 @@
               String, super, switch, synchronized, throw, throws, transient, try, void,
               volatile, while},
     % Built-in functions:
-    morekeywords=[2]{this, true, null, false},
+    morekeywords=[2]{false, null, this, true},
     %
     morecomment=[s]{/*}{*/},
     morecomment=[l]{//},
@@ -203,7 +204,9 @@
               return, void, continue, for, switch, while, debugger, function,
               with, default, if, throw, delete, in, try},
     % Built-in functions:
-    morekeywords=[2]{false, null, this, true},
+    morekeywords=[2]{append, false, find, log, null, prepend, this, true},
+    % Other methods:
+    morekeywords=[3]{alert, attr, console, css, each, hide, html, off, on, show, text, val},
     %
     morecomment=[s]{/*}{*/},
     morecomment=[l]{//},
@@ -280,7 +283,7 @@ literate=*{0}{{{\color{black}0}}}{1}
   font=\ttfamily,
   backgroundcolor=code-block,
   roundcorner=3pt]{lstlisting}
-
+  
 % Creates a new command to include a Python listing:
 % The first parameter is the filename of the script (without .py) and the second parameter is the caption
 \newcommand{\pythonlisting}[2]{
