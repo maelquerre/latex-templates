@@ -115,6 +115,10 @@
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}}
 
+% Line spacing
+% ------------
+\renewcommand{\baselinestretch}{1.3}
+
 
 % ---------------------
 % Colours configuration
@@ -151,8 +155,10 @@
 % -------------
 \newcommand\code[2][fill=codegray]{%
   \tikz[baseline]%
-  \node[draw, rectangle, gray, inner ysep=1pt, inner xsep=2.5pt, anchor=text,
-        rounded corners=2pt, #1]{%
+  \node[
+    draw, rectangle, gray,
+    inner ysep=1pt, inner xsep=2.5pt,
+    anchor=text, rounded corners=2pt, #1]{%
     \strut\texttt{\textcolor{black}{\lstinline{#2}}}%
   };%
 }
@@ -308,7 +314,7 @@ literate=*{0}{{{\color{black}0}}}{1}
 % Surround lstlistings with mdframed
 % ----------------------------------
 \surroundwithmdframed[
-  hidealllines=true, % hide mdframed lines
+  linecolor=gray,
   font=\ttfamily,
   backgroundcolor=backgray,
   roundcorner=3pt]{lstlisting}
