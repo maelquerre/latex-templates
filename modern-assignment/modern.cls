@@ -1,5 +1,4 @@
 % !TEX encoding = UTF-8 Unicode
-% !TEX TS-program = XeLaTeX --shell-escape
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{modern}
