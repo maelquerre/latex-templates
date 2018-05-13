@@ -1,4 +1,5 @@
 % !TEX encoding = UTF-8 Unicode
+% !TEX TS-program = XeLaTeX --shell-escape
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{modern}
@@ -143,7 +144,11 @@
   innertopmargin=5pt,
   innerrightmargin=10pt,
   innerbottommargin=0,
-  innerleftmargin=10pt
+  innerleftmargin=10pt,
+  linecolor=gray,
+  font=\ttfamily,
+  backgroundcolor=backgray,
+  roundcorner=3pt
 }
 
 % ----------------------------
@@ -312,8 +317,4 @@ literate=*{0}{{{\color{black}0}}}{1}
 % ----------------------------------
 % Surround lstlistings with mdframed
 % ----------------------------------
-\surroundwithmdframed[
-  linecolor=gray,
-  font=\ttfamily,
-  backgroundcolor=backgray,
-  roundcorner=3pt]{lstlisting}
+\surroundwithmdframed{lstlisting}
