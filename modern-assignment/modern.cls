@@ -142,7 +142,7 @@
   rightmargin=0,
   innertopmargin=5pt,
   innerrightmargin=10pt,
-  innerbottommargin=5pt,
+  innerbottommargin=0,
   innerleftmargin=10pt
 }
 
