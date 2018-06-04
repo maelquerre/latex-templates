@@ -56,6 +56,7 @@
 % Header
 % ------
 \newcommand{\makeheader}{%
+  \thispagestyle{plain}% no fancy header
   \noindent%
   \ifthenelse{\isundefined{\@institute}}{}{\@institute}
   \ifthenelse{\isundefined{\@date}}{}{\hfill\@date\\}
@@ -117,10 +118,10 @@
 \definecolor{purple}{RGB}{111,66,193}
 \definecolor{red}{RGB}{215,58,73}
 
-% ---------------------------------------------------------------------------------------
-%                             LISTING INCLUSION CONFIGURATION
-% ---------------------------------------------------------------------------------------
-%
+
+% --------------------------------
+% Listings inclusion configuration
+% --------------------------------
 
 % Code snippets
 % -------------
@@ -131,7 +132,50 @@
   };%
 }
 
-% ------------------
+% General configuration
+% ---------------------
+\lstset {
+    frame=single, % Lines around listing
+    framexleftmargin=5pt,  % Margin between the code and the frameline
+	xleftmargin=8pt, % Margin between the left border of the page and the listing
+	aboveskip=1em, % Space above the listing
+	belowskip=1.5em, % Space below the listing
+    basicstyle=\linespread{1.1}\ttfamily, % Line spread of 1.1 between lines and ttfamily font
+    upquote=true, % Straight single quotes
+    columns=flexible, % Flexible column alignment
+    breaklines=true, % Line breaks
+    tabsize=4, % 4 spaces per tab
+    keepspaces=true, % Not drop spaces to fix column alignment and always convert tabulators to spaces
+    %
+    % Line numbering:
+    numbers=left, % Line numbers on left
+	firstnumber=1, % Line numbers start with line 1
+	numberstyle=\tt\scriptsize\color{gray}, % Line numbers are gray and small
+	numbersep=15pt, % Distance between the numbers and the listing
+	%
+    % Style:
+    commentstyle=\color{gray}, % Comments are gray
+    stringstyle=\color{dark-blue}, % Strings are dark-blue
+    showstringspaces=false, % Don't put marks in string spaces
+    %
+    keywordstyle=[1]\color{red}, % Keywords style
+    keywordstyle=[2]\color{blue}, % Built-in functions style
+    %
+    % Colours for numbers:
+    % (The star indicates that literate replacements should not be made in strings, comments, and other delimited text)
+    literate=*{0}{{{\color{blue}0}}}{1}
+              {1}{{{\color{blue}1}}}{1}
+              {2}{{{\color{blue}2}}}{1}
+              {3}{{{\color{blue}3}}}{1}
+              {4}{{{\color{blue}4}}}{1}
+              {5}{{{\color{blue}5}}}{1}
+              {6}{{{\color{blue}6}}}{1}
+              {7}{{{\color{blue}7}}}{1}
+              {8}{{{\color{blue}8}}}{1}
+              {9}{{{\color{blue}9}}}{1}
+              {.}{{{\color{red}.}}}{1}
+}
+
 % Java configuration
 % ------------------
 \lstdefinelanguage{Java} {
@@ -155,7 +199,6 @@
     otherkeywords={+, -, =, <, >, \%, +=, -=, *=}, % unable to set * and / as operators with comments (// and /**/)
 }
 
-% ------------------------
 % Javascript configuration
 % ------------------------
 \lstdefinelanguage{JavaScript} {
@@ -176,10 +219,9 @@
     otherkeywords={+, -, =, <, >, \%, +=, -=, *=}, % unable to set * and / as operators with comments (// and /**/)
 }
 
-% --------------------
-% Markdown configuration
-% --------------------
-\lstdefinelanguage{Markdown} {
+% Neutral configuration
+% ---------------------
+\lstdefinelanguage{Neutral} {
 % Redefine black color for numbers and dot
 literate=*{0}{{{\color{black}0}}}{1}
           {1}{{{\color{black}1}}}{1}
@@ -194,7 +236,6 @@ literate=*{0}{{{\color{black}0}}}{1}
           {.}{{{\color{black}.}}}{1}
 }
 
-% --------------------
 % Python configuration
 % --------------------
 % Set the delimiter for classes declarations ('class TheClass:')
@@ -233,48 +274,4 @@ literate=*{0}{{{\color{black}0}}}{1}
 	moredelim=[is][\functionDefHighlight]{def\ }{(}, % Delimiter for functions declarations
 	moredelim=[is][\specialMethodHighlight]{def\ __}{__}, % Delimiter for special methods declarations
 	moredelim=[s][\color{blue}]{__}{__}, % Delimiter for special methods
-}
-                                          
-% ---------------------
-% General configuration
-% ---------------------
-\lstset {
-    frame=single, % Lines around listing
-    framexleftmargin=5pt,  % Margin between the code and the frameline
-	xleftmargin=25pt, % Margin between the left border of the page and the listing
-	belowskip=1.5em, % Space below the listing
-    basicstyle=\linespread{1.1}\ttfamily, % Line spread of 1.1 between lines and ttfamily font
-    upquote=true, % Straight single quotes
-    columns=flexible, % Flexible column alignment
-    breaklines=true, % Line breaks
-    tabsize=4, % 4 spaces per tab
-    keepspaces=true, % Not drop spaces to fix column alignment and always convert tabulators to spaces
-    %
-    % Line numbering:
-    numbers=left, % Line numbers on left
-	firstnumber=1, % Line numbers start with line 1
-	numberstyle=\tt\scriptsize\color{gray}, % Line numbers are gray and small
-	numbersep=15pt, % Distance between the numbers and the listing
-	%
-    % Style:
-    commentstyle=\color{gray}, % Comments are gray
-    stringstyle=\color{dark-blue}, % Strings are dark-blue
-    showstringspaces=false, % Don't put marks in string spaces
-    %
-    keywordstyle=[1]\color{red}, % Keywords style
-    keywordstyle=[2]\color{blue}, % Built-in functions style
-    %
-    % Colours for numbers:
-    % (The star indicates that literate replacements should not be made in strings, comments, and other delimited text)
-    literate=*{0}{{{\color{blue}0}}}{1}
-              {1}{{{\color{blue}1}}}{1}
-              {2}{{{\color{blue}2}}}{1}
-              {3}{{{\color{blue}3}}}{1}
-              {4}{{{\color{blue}4}}}{1}
-              {5}{{{\color{blue}5}}}{1}
-              {6}{{{\color{blue}6}}}{1}
-              {7}{{{\color{blue}7}}}{1}
-              {8}{{{\color{blue}8}}}{1}
-              {9}{{{\color{blue}9}}}{1}
-              {.}{{{\color{red}.}}}{1}
 }
