@@ -49,7 +49,7 @@
 % Main font
 \setmainfont{SF-Pro-Text}[
   Path=fonts/,
-  UprightFont=*-Regular,
+  UprightFont=*-Light,
   BoldFont=*-Medium,
   ItalicFont=*-LightItalic,
   BoldItalicFont=*-MediumItalic]
@@ -67,9 +67,9 @@
 \newfontfamily\headingfont{SF-Pro-Display}[
   Path=fonts/,
   UprightFont=*-Regular,
-  BoldFont=*-SemiBold,
+  BoldFont=*-Medium,
   ItalicFont=*-RegularItalic,
-  BoldItalicFont=*-SemiboldItalic]
+  BoldItalicFont=*-MediumItalic]
 
 
 % ----------------------
