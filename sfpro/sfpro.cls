@@ -2,7 +2,7 @@
 % !TEX TS-program = XeLaTeX --shell-escape
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{modern}
+\ProvidesClass{sfpro}
 
 % ----------
 % Base class
