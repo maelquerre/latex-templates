@@ -321,5 +321,5 @@ literate=*{0}{{{\color{black}0}}}{1}
 % ---------------------------
 \titleformat{\section}{\huge\bfseries\headingfont}{\thesection}{1em}{}[{\color{rule}\titlerule[1pt]}]  % horizontal rule under sections
 \titleformat{\subsection}{\LARGE\bfseries\headingfont}{\thesubsection}{1em}{}[{\color{rule}\titlerule[1pt]}]  % horizontal rule under subsections
-\titleformat{\subsubsection}{\Large\bfseries\headingfont}{\thesubsection}{1em}{}[{\color{rule}}]
+\titleformat{\subsubsection}{\Large\bfseries\headingfont}{\thesubsubsection}{1em}{}[{\color{rule}}]
 \titleformat*{\paragraph}{\large\bfseries\headingfont}
