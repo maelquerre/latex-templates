@@ -1,8 +1,8 @@
 % !TEX encoding = UTF-8 Unicode
-% !TEX TS-program = XeLaTeX --shell-escape
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{sfpro}
+\ProvidesClass{modern}[2018/11/11 v2
+  Classic document class]
 
 % ----------
 % Base class
@@ -13,14 +13,18 @@
 % -----------------
 % External packages
 % -----------------
-% Custom headers and footers
-\RequirePackage{fancyhdr}
-% Put figures where you actually want
-\RequirePackage{float}
-% Required for XeLaTeX fonts usage
+% Required for beautiful tables
+\RequirePackage{booktabs}
+% Required for lists customisation
+\RequirePackage{enumitem}
+% Required for font encoding
 \RequirePackage{fontspec}
+% Required for custom headers and footers
+\RequirePackage{fancyhdr}
+% Required to put figures where you actually want
+\RequirePackage{float}
 % Margins definition
-\RequirePackage[margin=2.5cm]{geometry}
+\RequirePackage[margin=3.5cm]{geometry}
 % Required for graphics inclusions
 \RequirePackage{graphicx}
 % Required for links
@@ -29,56 +33,25 @@
 \RequirePackage{lastpage}
 % Required for insertion of code
 \RequirePackage{listings}
-% Required for mdframed frames
-\RequirePackage[framemethod=TikZ]{mdframed}
 % Text Com­pan­ion fonts, which pro­vide many text sym­bols
 \RequirePackage{textcomp}
 % Required for color definitions
 \RequirePackage{xcolor}
-% Needed for \if-\then-\else statement
+% Needed for \if-\then-\else statements
 \RequirePackage{xifthen}
 % Required for coloured frames
 \RequirePackage{tikz}
 % Required for sections customisation
 \RequirePackage{titlesec}
-
-% ------------------
-% Fonts declarations
-% ------------------
-
-% Main font
-\setmainfont{SF-Pro-Text}[
-  Path=fonts/,
-  UprightFont=*-Light,
-  BoldFont=*-Medium,
-  ItalicFont=*-LightItalic,
-  BoldItalicFont=*-MediumItalic]
-
-% Mono font
-\setmonofont{SFMono}[
-  Path=fonts/,
-  UprightFont=*-Regular,
-  BoldFont=*-Bold,
-  ItalicFont=*-RegularItalic,
-  BoldItalicFont=*-BoldItalic,
-  Scale=0.9]
-
-% Heading font
-\newfontfamily\headingfont{SF-Pro-Display}[
-  Path=fonts/,
-  UprightFont=*-Regular,
-  BoldFont=*-Medium,
-  ItalicFont=*-RegularItalic,
-  BoldItalicFont=*-MediumItalic]
+% Required for translations
+%\RequirePackage{translations}
 
 
-% ----------------------
-% Commands for meta data
-% ----------------------
+% ---------------------------------
+% Additional commands for meta data
+% ---------------------------------
 % Institute
 \newcommand{\institute}[1]{\def\@institute{#1}}
-% Department
-\newcommand{\department}[1]{\def\@department{#1}}
 % Subject
 \newcommand{\subject}[1]{\def\@subject{#1}}
 
@@ -87,151 +60,177 @@
 % Document structure
 % ------------------
 
-% Title formats configuration
-% ---------------------------
-\titleformat{\section}{\LARGE\bfseries\headingfont}{\thesection}{1em}{}
-\titleformat{\subsection}{\Large\bfseries\headingfont}{\thesubsection}{1em}{}
-\titleformat{\subsubsection}{\large\bfseries\headingfont}{\thesubsubsection}{1em}{}
-%\titleformat*{\paragraph}{\large\bfseries\headingfont}
+% Title page
+% ----------
+\newcommand{\maketitlepage}{%
+  \begin{titlepage}
+    \pagenumbering{roman}
+    \setcounter{page}{1}
+    \thispagestyle{empty}
+    \begin{center}%
+      \vglue 2cm%
+      {\Huge\bfseries\MakeUppercase{\@title}\par}%
+      \ifthenelse{\isundefined{\@subject}}{}{
+        \vskip 1cm%
+        {\LARGE\@subject\par}%
+      }%
+      \vskip 1cm%
+      {\large
+       \lineskip .75em%
+        \begin{tabular}[t]{c}%
+          \@author
+        \end{tabular}\par
+      }%
+      \vskip 2cm%
+      {\large\@date\par}%
+      \ifthenelse{\isundefined{\@institute}}{}{
+        \vfill%
+        {\large\@institute\par}%
+        \vskip 3cm%
+      }%
+    \end{center}
+  \end{titlepage}
+  \addtocounter{page}{1}
+  \null
+  \thispagestyle{empty}%
+  \newpage%
+}
 
 % Header
 % ------
 \newcommand{\makeheader}{%
+  \thispagestyle{plain}% no fancy header
   \noindent%
-  \ifthenelse{\isundefined{\@institute}}{}{\@institute}
-  \ifthenelse{\isundefined{\@date}}{}{\hfill\@date\\}
-  \ifthenelse{\isundefined{\@department}}{}{%
-    \begin{tabular}{@{}l}%
-      \@department%
-    \end{tabular}\hfill%
-  }%
-  \ifthenelse{\isundefined{\@author}}{}{%
-    \begin{tabular}{r@{}}%
-      \@author%
-    \end{tabular}%
-  }%
-  \vspace{1em}
-
-  \ifthenelse{\isundefined{\@subject}}{}{%
-    \begin{center}%
-      {\Large\headingfont{\@subject}}%
-    \end{center}%
-  }
   \begin{center}%
-    {\huge\bfseries\headingfont{\@title}}%
+    {\huge\bfseries\@title}%
+    \vskip .5cm%
+    {\Large{\@subject}}%
+    \vskip .5cm%
+    {\large
+     \lineskip .75em%
+      \begin{tabular}[t]{c}%
+        \@author
+      \end{tabular}\par
+    }%
+    \vskip .5cm%
+    {\large\@date\par}%
   \end{center}%
-  \vspace{1em}
+  \vskip 1em
+}
+
+% Table of contents
+% -----------------
+\addtocontents{toc}{~\hfill\textbf{Page}\par}
+
+\newcommand\maketoc{
+  \thispagestyle{empty}%
+  \renewcommand{\contentsname}{%
+    \hfill\MakeUppercase{Table des matières}\hfill\break\vskip -.8cm%
+    \hfill\rule{3cm}{.6pt}\hfill%
+  }
+  \tableofcontents
+  \newpage
+  \pagenumbering{arabic}
+  \setcounter{page}{1}
 }
 
 % Fancyhdr (headers and footers)
 % ------------------------------
 \pagestyle{fancy}
-\cfoot{\thepage~/ \pageref{LastPage}} % style de numéro de page
-\fancypagestyle{plain}{%
-\fancyhf{} % vide l’en-tête et le pied~de~page.
-\fancyfoot[C]{\thepage~/ \pageref{LastPage}} % style de numéro de page
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot[C]{\thepage\ sur~\pageref{LastPage}} % except the center
+\renewcommand{\headrulewidth}{0pt} % no rule in head
+\renewcommand{\footrulewidth}{0pt} % no rule in foot
 
 % Line spacing
 % ------------
-\renewcommand{\baselinestretch}{1.3}
+\renewcommand{\baselinestretch}{1.2}
+
+% Lists configuration
+% -------------------
+\setlist{after=\vspace{0cm}}
 
 
 % ---------------------
 % Colours configuration
 % ---------------------
-\definecolor{black}{RGB}{0,0,0}
-\definecolor{gray}{RGB}{106,115,125}
-\definecolor{arrayrulegray}{RGB}{223,226,229}
-\definecolor{codeblockline}{RGB}{230,230,230}
-\definecolor{rulegray}{RGB}{234,236,239}
-\definecolor{codegray}{RGB}{243,244,244}
-\definecolor{codeblockbackground}{RGB}{249,250,250}
-\definecolor{blue}{RGB}{0,92,197}
-\definecolor{dark-blue}{RGB}{3,47,98}
-\definecolor{orange}{RGB}{227,98,9}
-\definecolor{purple}{RGB}{111,66,193}
-\definecolor{red}{RGB}{215,58,73}
+% Greyscale
+\definecolor{inlinecode}{HTML}{F3F4F4}
+\definecolor{codeblockbackground}{HTML}{F3F4F4}
+\definecolor{headingrulecolour}{HTML}{EAECEF}
+% Actual colours
+\definecolor{blue}{HTML}{005CC5}
+\definecolor{dark-blue}{HTML}{032F62}
+\definecolor{grey}{HTML}{6A737D}
+\definecolor{green}{HTML}{22863A}
+\definecolor{orange}{HTML}{E36209}
+\definecolor{purple}{HTML}{6F42C1}
+\definecolor{red}{HTML}{D73A49}
 
 
-% ----------------------
-% Mdframed configuration
-% ----------------------
-\mdfsetup{
-  leftmargin=0,
-  rightmargin=0,
-  innertopmargin=5pt,
-  innerrightmargin=10pt,
-  innerbottommargin=0,
-  innerleftmargin=10pt,
-  linecolor=codeblockline,
-  font=\ttfamily,
-  backgroundcolor=codeblockbackground,
-  roundcorner=3pt
-}
-
-
-% ----------------------------
-% Code inclusion configuration
-% ----------------------------
+% -----------------------------------------
+% Code inclusion configuration (lstlisting)
+% -----------------------------------------
 
 % Code snippets
 % -------------
-\newcommand\code[2][fill=codegray]{%
+\newcommand\code[1]{%
   \tikz[baseline]%
-  \node[
-    draw, rectangle, gray,
-    inner ysep=1pt, inner xsep=2.5pt,
-    anchor=text, rounded corners=2pt, #1]{%
-    \strut\texttt{\textcolor{black}{\lstinline{#2}}}%
+  \node[rectangle,
+        inner ysep=-1.5pt, inner xsep=3pt,
+        anchor=text, fill=codeblockbackground]{%
+        \strut{\textcolor{black}{\lstinline[basicstyle=\ttfamily\normalsize]{#1}}}%
   };%
 }
+
+\newcommand\bare[1]{\lstinline[basicstyle=\ttfamily\normalsize]{#1}}
 
 % General configuration
 % ---------------------
 \lstset {
-    frame=none, % No frame around listing
+    frame=single, % frame around listing
+    rulecolor=\color{codeblockbackground},
     backgroundcolor=\color{codeblockbackground},
-    framexleftmargin=5pt,  % Margin between the code and the frameline
-	xleftmargin=25pt, % Margin between the left border of the page and the listing
-	belowskip=1.5em, % Space below the listing
-    basicstyle=\linespread{1.1}\ttfamily, % Line spread of 1.1 between lines and ttfamily font
-    upquote=true, % Straight single quotes
-    columns=flexible, % Flexible column alignment
-    breaklines=true, % Line breaks
+    framesep=5pt,
+    %framexleftmargin=5pt, % margin between the code and the frameline
+    %framexrightmargin=5pt,
+    %framextopmargin=3pt,
+    %framexbottommargin=3pt,
+	xleftmargin=4pt, % margin between the left border of the page and the listing
+	belowcaptionskip=3\smallskipamount,
+    basicstyle=\linespread{1.1}\ttfamily\small, % general style in the listing
+    upquote=true, % straight single quotes
+    columns=flexible, % flexible column alignment
+    breaklines=true, % line breaks
     tabsize=4, % 4 spaces per tab
-    keepspaces=true, % Not drop spaces to fix column alignment and always convert tabulators to spaces
+    keepspaces=true, % not drop spaces to fix column alignment and always convert tabulators to spaces
     %
     % Line numbering:
-    numbers=left, % Line numbers on left
+    numbers=none, % Line numbers on left
 	firstnumber=1, % Line numbers start with line 1
-	numberstyle=\tt\scriptsize\color{gray}, % Line numbers are gray and small
+	numberstyle=\tt\scriptsize\color{grey}, % Line numbers are grey and small
 	numbersep=15pt, % Distance between the numbers and the listing
 	%
     % Style:
-    commentstyle=\color{gray},
-    stringstyle=\color{dark-blue},
+    commentstyle=\color{grey}\slshape,
     showstringspaces=false, % Don't put marks in string spaces
     %
-    keywordstyle=[1]\color{red}, % Keywords style
-    keywordstyle=[2]\color{blue}, % Built-in functions style
-    keywordstyle=[3]\color{purple}, % Other methods style
-    %
-    % Colours for numbers:
-    % (The star indicates that literate replacements should not be made in strings, comments, and other delimited text)
-    literate=*{0}{{{\color{blue}0}}}{1}
-              {1}{{{\color{blue}1}}}{1}
-              {2}{{{\color{blue}2}}}{1}
-              {3}{{{\color{blue}3}}}{1}
-              {4}{{{\color{blue}4}}}{1}
-              {5}{{{\color{blue}5}}}{1}
-              {6}{{{\color{blue}6}}}{1}
-              {7}{{{\color{blue}7}}}{1}
-              {8}{{{\color{blue}8}}}{1}
-              {9}{{{\color{blue}9}}}{1}
-              {.}{{{\color{red}.}}}{1}
+    % Keywords:
+    keywordstyle=[1]\bfseries, % Keywords style
+    keywordstyle=[2]\bfseries, % Built-in functions style
+    keywordstyle=[3]\bfseries, % Other methods style
 }
+
+% Pseudo-code configuration
+% ------------------
+\lstdefinelanguage{Pseudo} {
+    %xleftmargin=5pt,
+    %numbers=none,
+    numberstyle=\rmfamily\scriptsize,
+    basicstyle=\rmfamily,
+    mathescape=true
+}
+
 
 % Java configuration
 % ------------------
@@ -278,23 +277,6 @@
     otherkeywords={+, -, =, <, >, \%, +=, -=, *=}, % unable to set * and / as operators with comments (// and /**/)
 }
 
-% Markdown configuration
-% ----------------------
-\lstdefinelanguage{Markdown} {
-% Redefine black color for numbers and dot
-literate=*{0}{{{\color{black}0}}}{1}
-          {1}{{{\color{black}1}}}{1}
-          {2}{{{\color{black}2}}}{1}
-          {3}{{{\color{black}3}}}{1}
-          {4}{{{\color{black}4}}}{1}
-          {5}{{{\color{black}5}}}{1}
-          {6}{{{\color{black}6}}}{1}
-          {7}{{{\color{black}7}}}{1}
-          {8}{{{\color{black}8}}}{1}
-          {9}{{{\color{black}9}}}{1}
-          {.}{{{\color{black}.}}}{1}
-}
-
 % Python configuration
 % --------------------
 % Set the delimiter for classes declarations ('class TheClass:')
@@ -323,7 +305,7 @@ literate=*{0}{{{\color{black}0}}}{1}
     % (The colour of otherkeywords is the same colour as keywordstyle[1])
     otherkeywords={+, -, *, /, =, <, >, \%, +=, -=, *=},
     %
-    morecomment=[l][\color{gray}]{\#}, % Python comments (#)
+    morecomment=[l][\color{grey}]{\#}, % Python comments (#)
     %
     morestring=[b]", % Strings defined with "
     morestring=[b]', % Strings defined with '
@@ -334,8 +316,3 @@ literate=*{0}{{{\color{black}0}}}{1}
 	moredelim=[is][\specialMethodHighlight]{def\ __}{__}, % Delimiter for special methods declarations
 	moredelim=[s][\color{blue}]{__}{__}, % Delimiter for special methods
 }
-
-% ----------------------------------
-% Surround lstlistings with mdframed
-% ----------------------------------
-\surroundwithmdframed{lstlisting}

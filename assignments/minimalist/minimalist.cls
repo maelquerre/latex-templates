@@ -51,16 +51,16 @@
 % Main font
 \setmainfont{SF-Pro-Text}[
   Path=fonts/,
-  UprightFont=*-Light,
-  BoldFont=*-Medium,
+  UprightFont=*-Light, % 300
+  BoldFont=*-Medium, % 500
   ItalicFont=*-LightItalic,
   BoldItalicFont=*-MediumItalic]
 
 % Mono font
 \setmonofont{SFMono}[
   Path=fonts/,
-  UprightFont=*-Regular,
-  BoldFont=*-Bold,
+  UprightFont=*-Regular, % 400
+  BoldFont=*-Bold, % 700
   ItalicFont=*-RegularItalic,
   BoldItalicFont=*-BoldItalic,
   Scale=0.9]
@@ -68,10 +68,18 @@
 % Heading font
 \newfontfamily\headingfont{SF-Pro-Display}[
   Path=fonts/,
-  UprightFont=*-Regular,
-  BoldFont=*-Medium,
+  UprightFont=*-Regular, % 400
+  BoldFont=*-Medium, % 500
   ItalicFont=*-RegularItalic,
   BoldItalicFont=*-MediumItalic]
+
+% Title font
+\newfontfamily\titlefont{SF-Pro-Display}[
+  Path=fonts/,
+  UprightFont=*-Regular, % 400
+  BoldFont=*-Semibold, % 600
+  ItalicFont=*-RegularItalic,
+  BoldItalicFont=*-SemiboldItalic]
 
 
 % ----------------------
@@ -94,10 +102,9 @@
 
 % Title formats configuration
 % ---------------------------
-\titleformat{\section}{\LARGE\bfseries\headingfont}{\thesection}{1em}{}
-\titleformat{\subsection}{\Large\bfseries\headingfont}{\thesubsection}{1em}{}
-\titleformat{\subsubsection}{\large\bfseries\headingfont}{\thesubsubsection}{1em}{}
-%\titleformat*{\paragraph}{\large\bfseries\headingfont}
+\titleformat{\section}{\huge\bfseries\headingfont}{\thesection}{1em}{}
+\titleformat{\subsection}{\LARGE\bfseries\headingfont}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\Large\bfseries\headingfont}{\thesubsubsection}{1em}{}
 
 % Header
 % ------
@@ -109,7 +116,7 @@
 	  \vspace{8em}%
 	  {\huge\headingfont{\@subject}}\\%
 	  \vspace{1em}%
-	  {\fontsize{30}{40}\selectfont\bfseries\headingfont\@title}\\%
+	  {\fontsize{33}{40}\selectfont\bfseries\titlefont\@title}\\%
 	  \ifthenelse{\isundefined{\@date}}{}{\vspace{1em}\large\@date\\}%
 	  \ifthenelse{\isundefined{\@institute}}{}{\vspace{25em}\@institute}
     \end{flushright}
@@ -161,7 +168,7 @@
   rightmargin=0,
   innertopmargin=10pt,
   innerrightmargin=10pt,
-  innerbottommargin=0,
+  innerbottommargin=5pt,
   innerleftmargin=10pt,
   linecolor=codeblockborder,
   font=\ttfamily,
@@ -176,12 +183,11 @@
 
 % Code snippets
 % -------------
-\newcommand\code[2][fill=codegray]{%
+\newcommand\code[2][fill=codeblockbackground]{%
   \tikz[baseline]%
-  \node[
-    draw, rectangle, gray,
-    inner ysep=1pt, inner xsep=2.5pt,
-    anchor=text, rounded corners=2pt, #1]{%
+  \node[draw, rectangle, codeblockborder,
+        inner ysep=1pt, inner xsep=2.5pt,
+        anchor=text, rounded corners=2pt, #1]{%
     \strut\texttt{\textcolor{black}{\lstinline{#2}}}%
   };%
 }
@@ -193,7 +199,6 @@
     backgroundcolor=\color{codeblockbackground},
     framexleftmargin=5pt,  % Margin between the code and the frameline
 	xleftmargin=25pt, % Margin between the left border of the page and the listing
-	belowskip=1.5em, % Space below the listing
     basicstyle=\linespread{1.1}\ttfamily, % Line spread of 1.1 between lines and ttfamily font
     upquote=true, % Straight single quotes
     columns=flexible, % Flexible column alignment
