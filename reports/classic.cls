@@ -18,7 +18,9 @@
 % Required for lists customisation
 \RequirePackage{enumitem}
 % Required for font encoding
-\RequirePackage{fontspec}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
 % Required for custom headers and footers
 \RequirePackage{fancyhdr}
 % Required to put figures where you actually want
